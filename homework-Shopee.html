@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            width: 1200px;
+            margin: auto;
+        }
+
+        .wrap {
+            display: flex;
+            flex-wrap: wrap;
+            margin: auto;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            position: relative;
+            border-bottom: 1px solid gainsboro;
+            margin-bottom: 10px;
+
+        }
+
+        .right {
+            display: flex;
+            align-items: center;
+            position: absolute;
+            right: 0;
+            padding: 0 25px;
+
+        }
+
+        .right a {
+            text-decoration: none;
+            color: red;
+        }
+
+        .header .line {
+            border-left: 1px solid gainsboro;
+            padding-left: 10px;
+        }
+
+
+        .header p {
+            padding-left: 5px;
+            padding-right: 10px;
+            font-size: 13px;
+
+        }
+
+        .container .logo {
+            width: 20px;
+            height: 20px;
+        }
+
+        .picture img {
+            width: 400px;
+            height: 100%;
+            vertical-align: bottom;
+
+        }
+
+        .items {
+            display: flex;
+            flex-direction: column;
+            width: 770px;
+        }
+
+        .items p {
+            color: red;
+        }
+
+        .itemTop {
+            display: flex;
+            width: 770px;
+            margin: 0 15px 15px;
+            height: 200px;
+
+        }
+
+        .itemDown {
+            display: flex;
+            width: 770px;
+            margin: 15px;
+            height: 200px;
+
+
+        }
+
+        .item {
+            width: 180px;
+            padding: 0 10px 10px;
+            text-align: center;
+
+
+        }
+
+        .item img {
+            vertical-align: top;
+            width: 100%;
+            height: 200px;
+
+        }
+
+        .item p {
+            padding: 0;
+            margin: 0;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="header">
+            <a href="#"><img src="./shopee/蝦皮商城.png"></a>
+            <img class="logo line" src="./shopee/15天.png" alt="">
+            <p> <strong>十五天鑑賞期</strong></p>
+            <img class="logo" src="./shopee/蝦皮安心退.png" alt="">
+            <p> <strong>蝦皮安心退</strong></p>
+            <img class="logo" src="./shopee/正品保證.png" alt="">
+            <p> <strong>正品保障</strong></p>
+            <div class="right">
+                <a href="#">查看全部</a>
+                <img class="logo" src="./shopee/箭頭2.png" alt="">
+            </div>
+
+
+        </div>
+
+        <div class="wrap">
+            <div class="picture">
+                <img src="./shopee/Ad.png">
+            </div>
+            <div class="items">
+                <div class="itemTop">
+                    <div class="item">
+                        <img src="./shopee/圖圖.png">
+                        <p>全館五折Up</p>
+                    </div>
+                    <div class="item">
+                        <img src="./shopee/圖圖.png">
+                        <p>滿$299折$50</p>
+                    </div>
+                    <div class="item">
+                        <img src="./shopee/圖圖.png">
+                        <p>全館47折Up</p>
+                    </div>
+                    <div class="item">
+                        <img src="./shopee/圖圖.png">
+                        <p>國際書展領券85折</p>
+                    </div>
+                </div>
+                <div class="itemDown">
+                    <div class="item">
+                        <img src="./shopee/圖圖.png">
+                        <p>最強3C領券在折</p>
+                    </div>
+                    <div class="item">
+                        <img src="./shopee/圖圖.png">
+                        <p>蝦幣最高30倍送</p>
+                    </div>
+                    <div class="item">
+                        <img src="./shopee/圖圖.png">
+                        <p>全店超商99免運</p>
+                    </div>
+                    <div class="item">
+                        <img src="./shopee/圖圖.png">
+                        <p>盛大進駐關注領券</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+</body>
+
+</html>
