@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        main {
+            margin-top: 60px;
+        }
+
+
+        body {
+            background-color: rgba(0, 0, 0, 0.863);
+        }
+
+        div.title {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+        }
+
+        .google {
+            width: 300px;
+            position: relative;
+        }
+
+        p {
+            color: white;
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+        }
+
+        form {
+            display: flex;
+            justify-content: center;
+        }
+
+        div.search-content {
+            display: flex;
+            width: 600px;
+            height: 50px;
+            margin: auto;
+            border-radius: 24px;
+            background-color: white;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+
+        label {
+            display: flex;
+            align-items: center;
+        }
+
+        input:focus {
+            outline: none;
+        }
+
+        form {
+            display: flex;
+
+        }
+
+        form .search-bar {
+            width: 500px;
+            height: 30px;
+            padding-left: 10px;
+            border: none;
+
+
+        }
+
+        form .magnifier {
+            width: 20px;
+        }
+
+        form .microphone {
+            width: 15px;
+            position: relative;
+            top: 4px;
+
+
+        }
+
+        .search-bar::placeholder {
+            color: rgb(127, 97, 97);
+            font-size: 18px;
+            font-weight: bold;
+            position: relative;
+            top: 2.5px;
+        }
+
+        .footer {
+            display: flex;
+            width: 200px;
+            margin: auto;
+            margin-top: 50px;
+            justify-content: space-between;
+        }
+
+        .item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+
+        }
+
+        .youtube {
+            width: 26px;
+            position: relative;
+            top: 16px;
+        }
+
+        .item-pic {
+            width: 50px;
+            height: 50px;
+            background-color: rgb(74, 42, 42);
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+
+        .item .plus {
+            width: 20px;
+            position: relative;
+            top: 13px;
+        }
+    </style>
+</head>
+
+
+<body>
+    <main>
+        <div class="title">
+            <img class="google" src="./google/Google_logo_flat_white.png" alt="">
+        </div>
+
+        <div class="search-content">
+            <form action="">
+                <label>
+                    <img class="magnifier" src="./google/Untitled.png" alt="">
+                    <input class="search-bar" placeholder="搜尋Google或輸入網址" type="input">
+                </label>
+                <a href="#"><img class="microphone" src="./google/google_mic.png" alt=""></a>
+            </form>
+        </div>
+
+
+        <div class="footer">
+            <a href="https://youtube.com">
+                <div class="item">
+                    <div class="item-pic">
+                        <img class="youtube" src="./google/youtube.png"">
+                </div>
+                <p>youtube</p>
+            </div>
+            </a>
+    
+            <a href=" #">
+                        <div class=" item">
+                            <div class="item-pic">
+                                <img src="./google/plus.png" class="plus" alt="">
+                            </div>
+                            <div>
+                                <p>新增捷徑</p>
+                            </div>
+                        </div>
+            </a>
+        </div>
+
+    </main>
+
+</body>
+
+</html>
