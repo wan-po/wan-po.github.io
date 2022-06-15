@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://kit.fontawesome.com/24eccec891.js" crossorigin="anonymous"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Notosans2', 'Open-Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
+        }
+
+
+        .intro {
+            margin: 100px 0;
+        }
+
+        .intro-title {
+            font-size: 200%;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        h2 {
+            font-size: 42px;
+            text-align: center;
+            margin: 20px 0px;
+            font-weight: bold;
+        }
+
+        p.intro-text {
+            text-align: center;
+            font-size: 17px;
+            line-height: 30px;
+        }
+
+        .wrap {
+            display: flex;
+            width: 1150px;
+            padding-bottom: 100px;
+            margin: auto;
+            align-items: center;
+
+        }
+
+        .wrap-bottom-line {
+            margin-bottom: 100px;
+            border-bottom: 1px solid #E0E5E9;
+        }
+
+        .wrap:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .text>p {
+            line-height: 30px;
+        }
+
+
+        h3 {
+            font-size: 210%;
+            font-weight: bold;
+            margin-bottom: 30px;
+
+        }
+
+        h3::after {
+            content: url(./shopline/wave.png);
+
+            position: relative;
+            top: 10px;
+            right: 16px;
+        }
+
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 20px 0px;
+            vertical-align: middle;
+        }
+
+        li {
+            width: 50%;
+            display: inline-block;
+            display: flex;
+            font-size: 16px;
+            justify-content: flex-start;
+            padding: 5px;
+        }
+
+        a {
+            display: flex;
+            text-decoration: none;
+            align-items: center;
+        }
+
+        .fa-arrow-right {
+            padding-left: 5px;
+        }
+
+        .text {
+            width: 50%;
+        }
+
+        .pic {
+            display: flex;
+            align-items: flex-end;
+            width: 50%;
+
+
+        }
+
+
+
+        li::before {
+            content: url(./shopline/check.png);
+            padding-right: 5px;
+            position: relative;
+            right: 4px;
+
+        }
+
+
+        .more {
+            background-color: #f4f5f7;
+        }
+
+        .more-title {
+            padding-top: 50px;
+        }
+
+        .services {
+            display: flex;
+            width: 1200px;
+            margin: auto;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .service {
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+            margin: 0px 50px 15px;
+            align-items: center;
+        }
+
+        .service-pic {
+            width: 72px;
+            height: 72px;
+        }
+
+        .img-wrap {
+            width: 100px;
+            height: 100px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 30px;
+        }
+
+        .service-text {
+            font-size: 15px;
+            line-height: 30px;
+            margin-bottom: 25px;
+
+        }
+
+        h4 {
+            font-size: 125%;
+            font-weight: 6;
+            margin-bottom: 2px;
+        }
+
+        img {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="intro">
+        <h2 class="intro-title">單一平台就能助你<br>在全通路輕鬆開店創業</h2>
+        <p class="intro-text">從網路商店架站到實體門市管理，只需要一個平台，就能輕鬆實現開店創業，<br>
+            並能同步管理所有銷售管道，SHOPLINE 助你賣得更多、賣得更好！</p>
+    </div>
+
+
+
+    <div class="container">
+        <div class="wrap wrap-bottom-line">
+            <div class="text">
+                <h3>免寫程式、多款版型<br>輕鬆打造全能電商網站<br></h3>
+                <p>不會寫程式也能輕鬆架設品牌電商官網！任何產業都能找到合適的專業設計版型，以滑鼠拖曳就能完成網頁編輯，讓架設網站就像堆積木一樣簡單。</p>
+                <div class="list">
+                    <ul>
+                        <li>
+                            <p>豐富版型主題與字型搭配</p>
+                        </li>
+                        <li>
+                            <p>RWD 響應式網頁設計</p>
+                        </li>
+                        <li>
+                            <p>獨有網址 & SSL 安全憑證</p>
+                        </li>
+                        <li>
+                            <p>SEO 搜尋引擎優化</p>
+                        </li>
+                        <li>
+                            <p>一頁商店</p>
+                        </li>
+                        <li>
+                            <p>開放 HTML/CSS 編輯</p>
+                        </li>
+                    </ul>
+                    <a href="#">
+                        <p>看看開店祕技</p>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="pic">
+                <img src="./shopline/1130x.webp" alt="">
+            </div>
+        </div>
+        <div class="wrap wrap-bottom-line">
+            <div class="text">
+                <h3>支持海內外電商<br>金流、物流一次搞定<br></h3>
+                <p>支持在地及國際金流、物流串接服務，提供海內外顧客最便利的付款及送貨服務，加速消費者完成下單交易，大幅降低購物車放棄率！</p>
+                <div class="list">
+                    <ul>
+                        <li>
+                            <p>線上信用卡刷卡</p>
+                        </li>
+                        <li>
+                            <p>第三方金流／行動支付整合</p>
+                        </li>
+                        <li>
+                            <p>超商代碼／條碼繳費</p>
+                        </li>
+                        <li>
+                            <p>多溫層宅配並指定運費</p>
+                        </li>
+                        <li>
+                            <p>超商／宅配貨到付款</p>
+                        </li>
+                        <li>
+                            <p>發票開立與串接</p>
+                        </li>
+                    </ul>
+                    <a href="#">
+                        <p>了解更多金物流</p>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="pic">
+                <img src="./shopline/original.png" alt="">
+            </div>
+        </div>
+        <div class="wrap wrap-bottom-line">
+            <div class="text">
+                <h3>刺激下單，創造回購<br>行銷導流、促購模組任你玩<br></h3>
+                <p>多元優惠活動、會員集客機制、網紅分潤以及直播購物等豐富功能，將電商行銷玩法一網打盡，助你成功優化行銷活動成效，刺激顧客下單、吸引鐵粉回購！</p>
+                <div class="list">
+                    <ul>
+                        <li>
+                            <p>超過 20 種優惠促銷功能</p>
+                        </li>
+                        <li>
+                            <p>社群直播購物系統</p>
+                        </li>
+                        <li>
+                            <p>會員分級／點數／購物金</p>
+                        </li>
+                        <li>
+                            <p>Facebook／Google／LINE 廣告追蹤</p>
+                        </li>
+                        <li>
+                            <p>Instagram 購物功能</p>
+                        </li>
+                        <li>
+                            <p>Facebook／Instagram／LINE 對話式購物</p>
+                        </li>
+                    </ul>
+                    <a href="#">
+                        <p>看更多優惠模組</p>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="pic">
+                <img src="./shopline/3.png" alt="">
+            </div>
+        </div>
+        <div class="wrap">
+            <div class="text">
+                <h3>O2O 全通路無縫整併<br>輕鬆管理網店、門市以及其他通路<br></h3>
+                <p>不論是網店拓展門市，還是門市想發展網路生意，從商品、庫存、訂單等各項虛實店舖的資料都能完善整併，輕鬆實現全通路會員經營到多店營運。</p>
+                <div class="list">
+                    <ul>
+                        <li>
+                            <p>門市 POS 系統</p>
+                        </li>
+                        <li>
+                            <p>線上線下會員／商品／庫存整合</p>
+                        </li>
+                        <li>
+                            <p>門市快速集客工具</p>
+                        </li>
+                        <li>
+                            <p>O2O 即時銷售報表分析</p>
+                        </li>
+                        <li>
+                            <p>進銷庫存／調撥／多店管理</p>
+                        </li>
+                        <li>
+                            <p>串接 Shopee 蝦皮購物庫存</p>
+                        </li>
+                    </ul>
+                    <a href="#">
+                        <p>了解更多全通路整合</p>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="pic">
+                <img src="./shopline/4.png" alt="">
+            </div>
+        </div>
+    </div>
+
+    <div class="more">
+        <h2 class="more-title">更多功能與服務</h2>
+        <div class="services">
+            <div class="service">
+                <div class="img-wrap">
+                    <img class="service-pic" src="./shopline/more01.png">
+                </div>
+                <h4>強大庫存及訂單系統</h4>
+                <p class="service-text">從商品數量、貨況到訂單付款狀態、物流貨態一目瞭然，提升營運效率超有感。</p>
+            </div>
+            <div class="service">
+                <div class="img-wrap">
+                    <img class="service-pic" src="./shopline/more02.png">
+                </div>
+                <h4>即時化商店業績分析</h4>
+                <p class="service-text">圖表化報表助你一手掌握商店概況，讓數據助攻企業成長，營運策略更有方向。</p>
+            </div>
+            <div class="service">
+                <div class="img-wrap">
+                    <img class="service-pic" src="./shopline/more03.png">
+                </div>
+                <h4>多國語系、幣值切換</h4>
+                <p class="service-text">想做跨境電商也ＯＫ！提供語言、幣別、稅金等進階功能，友善應對海外消費需求。</p>
+            </div>
+            <div class="service">
+                <div class="img-wrap">
+                    <img class="service-pic" src="./shopline/more04.png">
+                </div>
+                <h4>專業顧問線上支援</h4>
+                <p class="service-text">迅速、透明的溝通管道，協助你快速解決從線上到線下、從在地到海外的網店疑難。</p>
+            </div>
+            <div class="service">
+                <div class="img-wrap">
+                    <img class="service-pic" src="./shopline/more05.png">
+                </div>
+                <h4>廣告行銷加值服務</h4>
+                <p class="service-text">由官方認證的專業投手團隊，協助品牌投遞 Facebook、Google、LINE 等廣告。</p>
+            </div>
+            <div class="service">
+                <div class="img-wrap">
+                    <img class="service-pic" src="./shopline/more06.png">
+                </div>
+                <h4>老闆專屬成長社群</h4>
+                <p class="service-text">致力為品牌店家打造能深度交流且互助的生態體系，是拓展人脈、商機的絕佳場域。</p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</body>
+</div>
+
+</html>
