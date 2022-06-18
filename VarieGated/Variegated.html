@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://kit.fontawesome.com/24eccec891.js" crossorigin="anonymous"></script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            font-family: Roboto, sans-serif;
+
+        }
+
+        .panel-container {
+            display: flex;
+            width: 1180px;
+            align-items: center;
+            line-height: 1.5;
+            margin: auto;
+            border-bottom: 1px solid #f6f6f6;
+
+        }
+
+        .panel-container::before {
+            border-bottom: 1px solid #f6f6f6;
+        }
+
+        .panel-container::after {
+            border-bottom: 1px solid #f6f6f6;
+        }
+
+        .panel-contact {
+            display: flex;
+            padding: 5px 0px;
+            padding-right: 9px;
+            align-items: center;
+            width: 50%;
+
+        }
+
+        .contact-time {
+            padding: 5px 9px;
+        }
+
+
+        .contact-tel {
+            display: flex;
+            border-right: 1px solid rgb(195, 184, 184);
+        }
+
+
+        .panel-contact .contact-tel-text {
+            font-size: 14px;
+            padding-right: 6px;
+            color: #5b5b5b;
+        }
+
+        .panel-contact .contact-time-text {
+            font-size: 14px;
+            padding-left: 6px;
+            color: #5b5b5b;
+        }
+
+        a {
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 4;
+            color: #5b5b5b;
+            padding-right: 10px;
+        }
+
+        .panel-features {
+            display: flex;
+            width: 50%;
+            justify-content: right;
+            align-items: center;
+        }
+
+        .panel-features :nth-child(2) {
+            cursor: pointer;
+        }
+
+        .panel-features :nth-child(3) {
+            cursor: pointer;
+        }
+
+        .features-item {
+            display: flex;
+            padding: 11px 25px;
+            align-items: center;
+            border-right: 1px solid #f6f6f6;
+            position: relative;
+            right: 15px;
+        }
+
+        .features-item:hover {
+            border-bottom: 2px solid #ffb4b4;
+        }
+
+        .fa-magnifying-glass:hover {
+            color: #ffb4b4;
+        }
+
+        .currency>p {
+            margin-right: 7px;
+            color: #5b5b5b;
+            font-size: 14px;
+            font-weight: 300;
+        }
+
+        .fa-cart-shopping {
+            line-height: 1.5;
+        }
+
+        .login>p {
+            color: #5b5b5b;
+        }
+
+        .search-bar {
+            margin-right: 10px;
+            width: 90px;
+            border: none;
+        }
+
+        input:focus {
+            outline: none;
+        }
+
+        .fa-magnifying-glass {
+            padding-right: 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 1180px;
+            margin: auto;
+        }
+
+        .header-img {
+            text-align: left;
+        }
+
+        ul.header-information {
+            margin: 23px;
+            text-align: center;
+            display: flex;
+        }
+
+        ul.header-information>li {
+            display: inline-block;
+            margin: 10px 20px;
+        }
+
+        ul.header-information li a {
+            font-weight: 700;
+            color: black;
+
+        }
+
+        ul.header-information li:first-of-type :nth-child(1) {
+
+            color: #ffb4b4;
+
+        }
+
+
+
+
+        div.icons {
+            display: flex;
+            position: relative;
+
+        }
+
+        div.icons>a {
+            margin-right: 18px;
+        }
+
+        .wrap {
+            display: flex;
+        }
+
+
+
+        .banner {
+            position: relative;
+            width: 1180px;
+            height: 630px;
+            display: flex;
+            margin: auto;
+            justify-content: flex-start;
+            background-image: url(./VarieGated/slider1.webp);
+            background-repeat: no-repeat;
+            background-size: 100%;
+
+        }
+
+        .banner-area {
+            display: flex;
+            width: 1180px;
+            height: 360px;
+            position: absolute;
+            align-items: center;
+            top: 100px;
+        }
+
+        .banner-text {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            position: absolute;
+            left: 70px;
+        }
+
+
+        .discount {
+            padding: 8px 13px;
+            background-color: black;
+        }
+
+        .discount>span {
+            color: white;
+        }
+
+        .banner-text>h2 {
+            font-size: 54px;
+            margin: 20px 0;
+        }
+
+        .black-line {
+            width: 53px;
+            height: 3px;
+            background-color: black;
+            margin-bottom: 30px;
+        }
+
+        .banner-text>p {
+            margin-bottom: 15px;
+            font-size: 18px;
+            line-height: 1.5;
+            color: #757578;
+        }
+
+        .banner-text>a {
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: .12em;
+            color: #1E1D24;
+        }
+
+        .discount-information {
+            background-color: #fbfbfc;
+            width: 100%;
+        }
+
+
+        .discount-group {
+            display: flex;
+            justify-content: center;
+            width: 1180px;
+            margin: auto;
+        }
+
+
+
+        .discount-item {
+            text-align: center;
+            padding: 10px;
+            margin: 30px 0;
+            flex-grow: 1;
+        }
+
+        .discount-item>h2 {
+            font-size: 16px;
+        }
+
+        .discount-item>p {
+            font-size: 14px;
+            color: #5d5d5d;
+        }
+
+        .discount-group .f {
+            background-color: #FFE5E5;
+        }
+
+        .discount-group .s {
+            background-color: #FFECE5;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        .discount-group .t {
+            background-color: #FFF5E5;
+        }
+
+        .categories {
+            background-image: url(./VarieGated/bg_cat.webp);
+            background-repeat: no-repeat;
+            height: 100%;
+            background-size: cover;
+            padding: 80px 0 0;
+        }
+
+        .categories-shop {
+            width: 1180px;
+            height: 100%;
+            margin: auto;
+            text-align: center;
+            position: relative;
+            bottom: 10px;
+        }
+
+        .categories-shop>h2 {
+            margin: 30px 0 40px;
+            font-weight: 300;
+        }
+
+        .categories-image-group {
+            display: flex;
+            justify-content: space-between
+        }
+
+
+        .image-item-text {
+            display: flex;
+            align-items: center;
+            margin-bottom: 60px;
+            padding: 20px 0;
+        }
+
+        .image-item h3 a {
+            vertical-align: middle;
+            position: relative;
+            bottom: 1.5px;
+            color: #232222;
+            font-size: 16px;
+            transition: 0.5s;
+        }
+
+        .image-item-pic {
+            width: 272px;
+            cursor: pointer;
+
+
+        }
+
+        .image-item>img {
+            vertical-align: bottom;
+
+
+        }
+
+        .image-item-text h3 a:hover {
+            color: #ffb4b4;
+        }
+
+
+
+        .image-item-text-line {
+            width: 30px;
+            height: 1px;
+            background-color: black;
+            margin: 10px 15px;
+        }
+
+        .favorite-area {
+            margin: 132px 0 85px;
+        }
+
+        .favorite-group {
+            display: flex;
+            width: 1180px;
+            height: 470px;
+            margin: auto;
+
+        }
+
+        .favorite-image {
+            width: 50%;
+            position: relative;
+        }
+
+        .favorite-cover {
+            width: 590px;
+            height: 474px;
+            background-color: #f6f6f6;
+            position: absolute;
+            top: -55px;
+            right: -35px;
+        }
+
+        .favorite-image>img {
+
+            position: absolute;
+            z-index: 1;
+        }
+
+
+
+        .favorite-text {
+            width: 347px;
+            /* display: flex;
+            flex-direction: column;
+            justify-content: center; */
+            margin: auto;
+
+        }
+
+        .favorite-title {
+            margin-bottom: 25px;
+            display: flex;
+
+        }
+
+        .favorite-title>h2 {
+
+            color: #232222;
+            font-size: 42px;
+            font-weight: 400;
+            line-height: 1em;
+
+        }
+
+        .favorite-text>p {
+            font-size: 16px;
+            color: #717171;
+            margin-bottom: 35px;
+        }
+
+        .favorite-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #1D1C2E;
+            width: 134px;
+            height: 46px;
+            transition: 0.5s;
+        }
+
+        .favorite-button:hover {
+            background-color: #ffb4b4;
+        }
+
+        .favorite-button>p {
+            color: white;
+            font-size: 11.52px;
+            line-height: 1.4;
+            letter-spacing: .12em;
+            font-weight: 700;
+        }
+
+        .models {
+            margin-bottom: 39px;
+        }
+
+        .models-group {
+            display: flex;
+            width: 1180px;
+            box-sizing: border-box;
+            flex-wrap: wrap;
+            margin: auto;
+        }
+
+        .models-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .models-title>h2 {
+            font-weight: 400;
+        }
+
+        .models-item {
+            width: 255px;
+            margin: 0 20px 50px;
+            position: relative;
+        }
+
+        .models-featured {
+            background-color: #febf01;
+            width: 59px;
+            height: 21px;
+            position: absolute;
+            top: 20px;
+            right: 0;
+        }
+
+        .models-featured>p {
+            color: white;
+            font-size: 11px;
+            padding: 5px 8px;
+        }
+
+        .models-item:hover .models-cover {
+            background-color: #0008;
+            width: 255px;
+            height: 323.92px;
+            position: absolute;
+            top: 0;
+            cursor: pointer;
+        }
+
+
+        .models-item>img {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+
+
+        .models-text p:nth-child(1) {
+            color: #adaaaa;
+            font-size: 9px;
+            margin-bottom: 5px;
+        }
+
+        .models-text p:nth-child(2) {
+
+            font-size: 16px;
+            color: #232222;
+            font-weight: 300;
+            margin-bottom: 5px;
+        }
+
+        .models-text p:nth-child(3) {
+
+            font-size: 16px;
+            color: #232222;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .daily-board {
+            height: 558px;
+            background-image: url(.//VarieGated/banner4.webp);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .daily-text {
+            display: flex;
+            height: 100%;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .daily-text>h2 {
+            color: white;
+            font-size: 16px;
+            margin-bottom: 19px;
+            letter-spacing: 3px;
+            font-weight: 400;
+        }
+
+        .daily-text>p {
+            color: white;
+            font-size: 60px;
+            line-height: 1.2;
+            letter-spacing: 3px;
+            /* margin-bottom: 25px; */
+        }
+
+        .daily-text :nth-child(3) {
+            margin-bottom: 25px;
+        }
+
+        .daily-button {
+            display: flex;
+            width: 134px;
+            height: 46px;
+            background-color: black;
+            justify-content: center;
+            align-items: center;
+            transition: 0.5s;
+        }
+
+        .daily-button:hover {
+            background-color: #ffb4b4;
+        }
+
+        .daily-button>p {
+            color: white;
+            font-size: 11.52px;
+            letter-spacing: 0.12em;
+
+        }
+
+
+        .blog {
+            margin-top: 72px;
+        }
+
+        .blog-group {
+            display: flex;
+            width: 1180px;
+            margin: auto;
+            margin-bottom: 195px;
+            flex-direction: column;
+        }
+
+        .blog-title {
+            text-align: center;
+            margin-bottom: 23px;
+            width: 1180px;
+        }
+
+        .blog-title>h2 {
+            font-size: 24px;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+        }
+
+        .blog-area {
+            display: flex;
+        }
+
+        .blog-item {
+            position: relative;
+            padding: 10px 0;
+            padding-right: 40px;
+            display: flex;
+            justify-content: flex-end;
+            width: 50%;
+        }
+
+        .blog-item>img {
+            cursor: pointer;
+        }
+
+
+
+        .blog-text {
+            background-color: #f6f6f6;
+            padding: 20px;
+            width: 480px;
+            height: 120px;
+            bottom: -100px;
+            right: 30px;
+            position: absolute;
+        }
+
+        .blog-text>a {
+            display: inline-block;
+            margin-bottom: 15px;
+            font-size: 24px;
+            color: #232222;
+            font-weight: 400;
+            line-height: 1.2;
+
+            text-decoration: none;
+        }
+
+        .blog-text>p {
+            margin-bottom: 13px;
+            color: #717171;
+        }
+
+        .get-news-group {
+            display: flex;
+            width: 1160px;
+            margin: auto;
+            justify-content: space-around;
+            padding: 10px;
+            background-color: #FFECE5;
+        }
+
+        .get-news-item {
+            display: flex;
+            width: 50%;
+            justify-content: center;
+        }
+
+        .get-news-title {
+
+            text-align: center;
+            margin: 10px;
+
+        }
+
+        .get-news-title>h2 {
+            font-size: 24px;
+            font-weight: 400;
+            line-height: 1.344;
+        }
+
+        .get-news-way {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .get-news-email {
+            border: none;
+            width: 343px;
+            height: 22px;
+            padding: 13px 20px;
+        }
+
+        .get-news-email::placeholder {
+            font-size: 16px;
+        }
+
+        .get-news-button {
+            background-color: #1d1c21;
+            margin-left: 10px;
+            width: 136px;
+            height: 48px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: 0.5s;
+        }
+
+        .get-news-button:hover {
+            background-color: #ffb4b4;
+        }
+
+        .get-news-button>p {
+
+            font-weight: 700;
+            color: #FFF;
+
+
+        }
+
+        .instagram {
+            margin: 64px 0;
+            text-align: center;
+        }
+
+        .instagram>h2 {
+            font-size: 24px;
+            color: #232222;
+            font-weight: 400;
+            line-height: 1.344;
+            letter-spacing: 0.05em;
+        }
+
+        .footer {
+            margin-top: 20px;
+            background-color: #000;
+        }
+
+        .footer-group {
+            display: flex;
+            width: 1180px;
+            margin: auto;
+            justify-content: space-between;
+
+
+        }
+
+        .footer-item {
+            width: 275px;
+            color: #FFF;
+            padding: 20px;
+            margin: 50px 0 30px;
+
+        }
+
+        .footer-item>h2 {
+            font-size: 16px;
+            margin-bottom: 16px;
+        }
+
+        .footer-item>p {
+            color: #949494;
+            font-size: 14px;
+            line-height: 2;
+        }
+
+        .footer-item>ul {
+            list-style-type: none;
+        }
+
+        .footer-item ul>li {
+            margin-top: 11px;
+        }
+
+        .footer-item li>a {
+            font-size: 14px;
+            color: #949494;
+        }
+
+        .footer-last {
+            margin: auto;
+            display: flex;
+            justify-content: flex-start;
+            border-top: 2px solid #1E1D24;
+            padding: 16px 20px;
+        }
+
+        .footer-last-group {
+            width: 1180px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-last-group>p {
+            color: #949494;
+            font-size: 14px;
+            margin: 10px;
+        }
+
+
+
+        .footer-last-icons {
+            display: flex;
+            flex-grow: 1;
+            justify-content: flex-end;
+        }
+
+        .footer-last-icons>a {
+            padding: 0;
+        }
+
+        .footer-last-icons .fa-brands {
+            color: white;
+            margin: 0 9px;
+            width: 15px;
+            height: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="panel-container">
+        <div class="panel-contact">
+            <div class="contact-tel">
+                <p class="contact-tel-text">Call us:</p>
+                <a href="#">+3(8002345-6789)</a>
+            </div>
+            <div class="contact-time">
+                <p class="contact-time-text">7 Days a week from 9:00 am to 7:00 pm</p>
+            </div>
+        </div>
+
+        <div class="panel-features">
+            <div class="currency features-item">
+                <p>USD,$</p>
+                <i class="fa-solid fa-angle-down"></i>
+            </div>
+
+            <div class="shopping-cart features-item">
+
+                <i class="fa-solid fa-cart-shopping"></i>
+            </div>
+
+            <div class="login features-item">
+                <p>Login</p>
+            </div>
+
+            <div class="search features-item">
+                <form action="">
+                    <label for="">
+                        <input class="search-bar" placeholder="Search..." type="input">
+                    </label>
+                </form>
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+        </div>
+    </div>
+
+    <section class="header">
+        <div class="header-img">
+            <img src="../Day04/VarieGated/logo.webp" alt="">
+        </div>
+
+        <ul class="header-information">
+            <li>
+                <a href="">HOME</a>
+            </li>
+            <li>
+                <a href="">ABOUT</a>
+            </li>
+            <li>
+                <a href="">FEATURES</a>
+            </li>
+            <li>
+                <a href="">BLOGS</a>
+            </li>
+            <li>
+                <a href="">SHOP</a>
+            </li>
+            <li>
+                <a href="">CONTACTS</a>
+            </li>
+        </ul>
+
+        <div class="icons">
+            <a href="#">
+                <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a href="#">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="#">
+                <i class="fa-brands fa-google"></i>
+            </a>
+            <a href="#">
+                <i class="fa-brands fa-twitter"></i>
+            </a>
+        </div>
+    </section>
+
+    <section class="wrap">
+        <div class="banner">
+            <!-- <img src="../Day04/VarieGated/slider1.webp" alt=""> -->
+            <div class="banner-area">
+                <div class="banner-text">
+                    <div class="discount">
+                        <span>-20% SALE</span>
+                    </div>
+                    <h2>BE A CHERRY ON PIE<br>IN ANY SITUATION</h2>
+                    <div class="black-line">
+                    </div>
+                    <p>Experiment, mix and showcase colors, textures and styles<br>Be yourself and impress others!</p>
+                    <a href="#">
+                        <i class="fa-solid fa-arrow-right-long"></i>
+                        Read More
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="discount-information">
+        <div class="discount-group">
+            <div class="discount-item f">
+                <h2>FREE STANDARD DELIVERY</h2>
+                <p>on order over $49</p>
+            </div>
+            <div class="discount-item s">
+                <h2>30% OFF 100'S PANTYS</h2>
+                <p>use code:pantyup30</p>
+            </div>
+            <div class="discount-item t">
+                <h2>20% STUDENT DISCOUNT PLUS</h2>
+                <p>free next day delivery,excludes sale.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="categories">
+        <div class="categories-shop">
+            <h2>SHOP CATEGORIES</h2>
+            <div class="categories-image-group">
+                <div class="image-item">
+                    <div class="image-item-pic">
+                        <img src="./VarieGated/cat5-275x376.jpg" alt="">
+                    </div>
+                    <div class="image-item-text">
+                        <div class="image-item-text-line">
+                        </div>
+                        <h3><a href="#">Blazers</a></h3>
+                    </div>
+                </div>
+                <div class="image-item">
+
+                    <div class="image-item-pic">
+                        <img src="./VarieGated/cat4-275x376.jpg" alt="">
+                    </div>
+                    <div class="image-item-text">
+                        <div class="image-item-text-line">
+                        </div>
+                        <h3><a href="#">Dresses</a></h3>
+                    </div>
+
+                </div>
+                <div class="image-item">
+                    <div class="image-item-pic">
+                        <img src="./VarieGated/cat3-275x376.jpg" alt="">
+                    </div>
+                    <div class="image-item-text">
+                        <div class="image-item-text-line">
+                        </div>
+                        <h3><a href="#">Jumpsuits</a></h3>
+                    </div>
+                </div>
+                <div class="image-item">
+                    <div class="image-item-pic">
+                        <img src="./VarieGated/cat2-275x376.jpg" alt="">
+                    </div>
+                    <div class="image-item-text">
+                        <div class="image-item-text-line">
+                        </div>
+                        <h3><a href="#">New Arrivel</a></h3>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="favorite-area">
+        <div class="favorite-group">
+            <div class="favorite-image">
+                <img src="./VarieGated/image.webp" alt="">
+                <div class="favorite-cover"></div>
+            </div>
+            <div class="favorite-text">
+                <div class="favorite-title">
+                    <h2>FAVORITE BLOUSES</h2>
+                </div>
+                <p>our new favorite blouses are defined by great all-over patterns are defined by great all-over
+                    patterns and special details</p>
+                <a href="#">
+                    <div class="favorite-button">
+                        <p>SHOP NOW</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="models">
+        <div class="models-information">
+            <div class="models-title">
+                <h2>MOST RECENT POPULAR MODELS</h2>
+            </div>
+            <div class="models-group">
+                <div class="models-item">
+                    <img src="./VarieGated/Buttoned-shirt_2-370x470.jpg" alt="">
+                    <div class="models-cover">
+
+                    </div>
+                    <div class="models-text">
+                        <p>BLAZERS JUMPSUITS</p>
+                        <p>BUTTONED SHIRT</p>
+                        <p>59.00$</p>
+                    </div>
+                </div>
+                <div class="models-item">
+                    <img src="./VarieGated/Checked-tunic_1-370x470.jpg" alt="">
+                    <div class="models-cover">
+                    </div>
+                    <div class="models-featured">
+                        <p>Featured</p>
+                    </div>
+                    <div class="models-text">
+                        <p>TROUSERS-SHORTS BLAZERS DRESSES</p>
+                        <p>CHECKED TUNIC</p>
+                        <p>69.00$</p>
+                    </div>
+                </div>
+                <div class="models-item">
+                    <img src="./VarieGated/Embroidered-shirt_1-370x470.jpg" alt="">
+                    <div class="models-cover">
+                    </div>
+                    <div class="models-featured">
+                        <p>Featured</p>
+                    </div>
+                    <div class="models-text">
+                        <p>TROUSERS-SHORTS BLAZERS DRESSES JUMPSUITS N...</p>
+                        <p>EMBROIDERED SHIRT</p>
+                        <p>36.00$</p>
+                    </div>
+                </div>
+                <div class="models-item">
+                    <img src="./VarieGated/Faux-leather-jacket-with-flowing-lapels_1-370x470.jpg" alt="">
+                    <div class="models-cover">
+                    </div>
+                    <div class="models-text">
+                        <p>TROUSERS-SHORTS BLAZERS NEW ARRIVEL</p>
+                        <p>FAUX LEATHER JACKET WITH FLOWING LAPELS</p>
+                        <p>96.00$</p>
+                    </div>
+                </div>
+                <div class="models-item">
+                    <img src="/Day04/VarieGated/Lightweight-puffer-jacket_2-370x470.jpg" alt="">
+                    <div class="models-cover">
+                    </div>
+                    <div class="models-featured">
+                        <p>Featured</p>
+                    </div>
+                    <div class="models-text">
+                        <p>TROUSERS-SHORTS DRESSES JUMPSUITS</p>
+                        <p>LIGHTWEIGHT PUFFER JACKET</p>
+                        <p>54.00$</p>
+                    </div>
+                </div>
+                <div class="models-item">
+                    <img src="./VarieGated/Polka-dot-shirt-dress_2-370x470.jpg" alt="">
+                    <div class="models-cover">
+
+                    </div>
+                    <div class="models-text">
+                        <p>TROUSERS-SHORTS DRESSES</p>
+                        <p>POLKA DOT SHIRT DRESS</p>
+                        <p>66.00$</p>
+                    </div>
+                </div>
+                <div class="models-item">
+                    <img src="./VarieGated/Ripped-denim-jacket_2-370x470.jpg" alt="">
+                    <div class="models-cover">
+
+                    </div>
+                    <div class="models-text">
+                        <p>TROUSERS-SHORTS DRESSES JUMPSUITS</p>
+                        <p>RIPPED DENIM JACKET</p>
+                        <p>35.00$</p>
+                    </div>
+                </div>
+                <div class="models-item">
+                    <img src="./VarieGated/Suede-effect-dress_1-370x470.jpg" alt="">
+                    <div class="models-cover">
+                    </div>
+                    <div class="models-featured">
+                        <p>Featured</p>
+                    </div>
+                    <div class="models-text">
+                        <p>TROUSERS-SHORTS DRESSES JUMPSUITS</p>
+                        <p>SUEDE EFFECT DRESS</p>
+                        <p>89.00$</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="daily-board">
+        <div class="daily-text">
+            <h2>DAILY DEALS</h2>
+            <P>MODERN CASUAL</P>
+            <P>ESSENTIALS</P>
+            <a href="#">
+                <div class="daily-button">
+                    <p>SHOP NOW</p>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <section class="blog">
+        <div class="blog-group">
+            <div class="blog-title">
+                <h2>LATEST FROM BLOG</h2>
+            </div>
+            <div class="blog-area">
+                <div class="blog-item">
+                    <img src="./VarieGated/image11-565x382.jpg" alt="">
+                    <div class="blog-text">
+                        <a>WHEN IN DOUBT, WEAR ROSE PUMPS</a>
+                        <p>it's always a good idea to invest in a good pair of nude pumps. It's a timeless wardrobe
+                            staple
+                            just...</p>
+                        <p>22February <span>post by admin</span></p>
+                    </div>
+                </div>
+                <div class="blog-item">
+                    <img src="../Day04/VarieGated/image12-565x382.jpg" alt="">
+                    <div class="blog-text">
+                        <a>HEM YOUR PANTS FOR A SHOE HEIGHT</a>
+                        <p>A mistake many people make is wearing pants(or dresses)that are too long or too short for
+                            their
+                            shoes...</p>
+                        <p>22February,2018 - <span>post by admin</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="get-news">
+        <div class="get-news-group">
+            <div class="get-news-item">
+                <div class="get-news-title">
+                    <h2>GET THE LATEST NEWS DELIVERED DAILY!</h2>
+                </div>
+            </div>
+            <div class="get-news-item">
+                <div class="get-news-way">
+                    <label for="">
+                        <input class="get-news-email" type="email" placeholder="Please enter your email">
+                    </label>
+                    <a href="#">
+                        <div class="get-news-button">
+                            <p>SUBSCRIBE</p>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <div class="instagram">
+        <h2>@INSTAGRAM</h2>
+    </div>
+
+    <section class="footer">
+        <div class="footer-group">
+            <div class="footer-item">
+                <h2>CATEGORIES</h2>
+                <ul>
+                    <li>
+                        <a href="">Help&Contact Us</a>
+                    </li>
+                    <li>
+                        <a href="">Returns&Refunds</a>
+                    </li>
+                    <li>
+                        <a href="">Online Stores</a>
+                    </li>
+                    <li>
+                        <a href="">Teams&Conditions</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer-item">
+                <h2>OUR STORE</h2>
+                <ul>
+                    <li>
+                        <a href="">About</a>
+                    </li>
+                    <li>
+                        <a href="">Blog</a>
+                    </li>
+                    <li>
+                        <a href="">Shop</a>
+                    </li>
+                    <li>
+                        <a href="">Contacts</a>
+                    </li>
+                </ul>
+
+            </div>
+            <div class="footer-item">
+                <h2>PROTFILE</h2>
+                <ul>
+                    <li>
+                        <a href="">Checkout</a>
+                    </li>
+                    <li>
+                        <a href="">My account</a>
+                    </li>
+                    <li>
+                        <a href="">Order tracking</a>
+                    </li>
+                    <li>
+                        <a href="">Help&support</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="footer-item">
+                <h2>ABOUT US</h2>
+                <p>Variegated is the place where everyone can is able to find some clothing called to highlight one's
+                    individuality!We are waiting right for you!</p>
+            </div>
+        </div>
+        <div class="footer-last">
+            <div class="footer-last-group">
+                <p>&copy;2022 Variegated. All Rights Reserved.</p>
+                <div class="footer-last-icons">
+                    <a href="#">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                    <a href="#">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="#">
+                        <i class="fa-brands fa-google"></i>
+                    </a>
+                    <a href="#">
+                        <i class="fa-brands fa-twitter"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+</body>
+
+</html>
