@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .pic {
+            width: 400px;
+            margin: auto;
+            border: 2px solid black;
+        }
+
+        .pic img {
+            width: 100%;
+            vertical-align: bottom;
+
+        }
+
+        .intro {
+            width: 400px;
+            margin: auto;
+        }
+
+        .pictures {
+            width: 900px;
+            margin: auto;
+            display: flex;
+            justify-content: center;
+        }
+
+        .pictures>img {
+            width: 280px;
+            outline: 1px solid red;
+            height: 260px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <section class="profile-picture">
+        <div class="pic">
+            <img src="" alt="">
+        </div>
+    </section>
+
+    <section class="profile-intro">
+        <div class="intro">
+            <h2></h2>
+            <h2></h2>
+            <h2 class="school"></h2>
+            <h2 class="interests"></h2>
+        </div>
+    </section>
+
+    <section class="footer-pictures">
+        <div class="pictures">
+            <img src="" alt="">
+            <img src="" alt="">
+            <img src="" alt="">
+        </div>
+
+
+
+    </section>
+
+    <script>
+        let pic = "https://images.chinatimes.com/newsphoto/2021-09-21/1024/20210921001772.jpg";
+        let mainPic = document.querySelector(".pic img");
+        mainPic.setAttribute("src", pic);
+
+        let name = "姓名：帥哥FBI";
+        let email = "郵箱：SugarHoneyIcedTea@FBI.com";
+        let school = "學校：FBI kindergarten";
+        let interests = "興趣：耍帥"
+
+        let item1 = document.querySelector(".intro :nth-child(1)");
+        item1.innerText = name;
+        let item2 = document.querySelector(".intro h2:nth-of-type(2)");
+        item2.innerText = email;
+        let item3 = document.querySelector(".school");
+        item3.innerText = school;
+        let item4 = document.querySelector(".interests");
+        item4.innerText = interests;
+
+        let picList = [
+            "https://imgur.dcard.tw/WJYm7ZNh.jpg",
+            "https://p2.bahamut.com.tw/HOME/creationCover/54/0003804354_B.JPG",
+            "http://gametsg.techbang.com/maplestory/icon_npc/c01b8525a8a714a7be0c597954a1abfb.png"
+        ]
+
+        picList.forEach((item, index) => {
+            let pg = document.querySelector(`.pictures :nth-child(${index + 1})`);
+            pg.src = item;
+        })
+
+
+        // picList.forEach((item, index) => {
+        //     document.write(`<img src="${item}" style="margin-top:30px;width:300px; margin-right:100px;">`);
+        // })
+
+
+        // for (let i = 0; i <= 2; i++) {
+        //     let pp = document.querySelector(`.pictures :nth-child(${i + 1})`);
+        //     pp.src = picList[i];
+        // }
+
+    </script>
+
+</body>
+
+</html>
