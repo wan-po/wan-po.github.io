@@ -1,0 +1,1736 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./normalize.css">
+    <script src="https://kit.fontawesome.com/24eccec891.js" crossorigin="anonymous"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        }
+
+        .nav {
+            background-color: #fff;
+            width: 100%;
+            padding: 18px 0;
+            position: sticky;
+            top: 0;
+            z-index: 5;
+        }
+
+        .nav-bar {
+            width: 95%;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+
+        }
+
+        input {
+            display: none;
+        }
+
+        #menu-switch:checked~.menu {
+            position: fixed;
+            left: 0;
+        }
+
+        .menu-label {
+            display: inline-block;
+            width: 100%;
+        }
+
+        .menu {
+            width: 65%;
+            height: 100%;
+            background-color: #FFFFFF;
+            position: fixed;
+            z-index: 10;
+            top: 0;
+            left: -65%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: all 1s;
+        }
+
+        .menu-header {
+            display: flex;
+            width: 100%;
+            border-bottom: 1px solid #9c9c9c;
+            align-items: center;
+        }
+
+        .menu-block {
+            display: inline-block;
+
+
+        }
+
+        .menu-area {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            padding: 20px 0;
+            background-color: black;
+        }
+
+        .menu-area-span {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            margin-right: 10px;
+        }
+
+        .menu-area-span :nth-child(1),
+        .menu-area-span :nth-child(3) {
+            display: inline-block;
+            width: 20px;
+            height: 2px;
+            background-color: #fff;
+        }
+
+        .menu-area-span :nth-child(2) {
+            display: inline-block;
+            width: 12px;
+            height: 2px;
+            background-color: #fff;
+        }
+
+
+
+        .menu-area>a {
+            display: inline-block;
+            color: white;
+        }
+
+        .login-block {
+            display: inline-block;
+            flex-grow: 1;
+
+        }
+
+        .menu-login {
+            width: 100%;
+            /* background-color: black; */
+            display: flex;
+            justify-content: center;
+            padding: 20px 0;
+        }
+
+        .menu-login .fa-circle-user {
+            margin-right: 10px;
+            position: relative;
+            top: 2px;
+        }
+
+        .menu-group {
+            width: 100%;
+            height: 80%;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .menu-item {
+            width: 80%;
+
+
+        }
+
+
+        .home-item,
+        .shop-item,
+        .pages-item,
+        .featured-item,
+        .element-item {
+            position: absolute;
+            opacity: 0;
+
+
+        }
+
+        #home-switch:checked~.home-item,
+        #shop-switch:checked~.shop-item,
+        #featured-switch:checked~.featured-item,
+        #pages-switch:checked~.pages-item,
+        #element-switch:checked~.element-item {
+            position: relative;
+            top: 0;
+            height: auto;
+            opacity: 1;
+            transition: 0.5s;
+        }
+
+        /* 
+        #shop-switch:checked~.shop-item {
+            position: relative;
+            top: 0;
+            opacity: 1;
+        }
+
+        #featured-switch:checked~.featured-item {
+            position: relative;
+            top: 0;
+            opacity: 1;
+        } */
+
+        .home-item a,
+        .shop-item a,
+        .featured-item a,
+        .pages-item a,
+        .element-item a {
+            color: black;
+        }
+
+
+
+
+        .menu-item li {
+            list-style: none;
+            margin-top: 30px;
+            display: flex;
+
+        }
+
+        .menu-item li a:nth-child(1) {
+            display: inline-block;
+            width: 100%;
+
+        }
+
+        .menu-item h2 {
+            font-size: 16px;
+        }
+
+        .menu-item h2::after {
+            content: "";
+            display: flex;
+            margin-top: 10px;
+            width: 45px;
+            height: 1px;
+            background-color: #000;
+        }
+
+
+
+
+
+
+
+        .menu-footer {
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+            display: flex;
+            justify-content: center;
+            background-color: RGB(80, 132, 50);
+            cursor: pointer;
+
+        }
+
+        .menu-footer span {
+            display: inline-block;
+            color: white;
+            margin: 10px 0;
+            /* cursor: pointer; */
+        }
+
+
+        .hambuger {
+            width: 70px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .hambuger span+span {
+            margin-top: 5px;
+        }
+
+        .hambuger :nth-child(1) {
+
+            height: 2px;
+            width: 50%;
+            background-color: #518432;
+
+        }
+
+        .hambuger span:nth-child(2) {
+            height: 2px;
+            width: 24.2857142857%;
+            background-color: #518432;
+        }
+
+        .hambuger span:nth-child(3) {
+            height: 2px;
+            width: 18.5714285714%;
+            background-color: #518432;
+        }
+
+        .nav-bar-group {
+            display: none;
+        }
+
+        .nav-logo {
+            width: 160px;
+        }
+
+        img {
+            width: 100%;
+        }
+
+        .nav-icon {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-icon-search :nth-child(1) {
+            margin-right: 16px;
+        }
+
+        .fa-magnifying-glass,
+        .fa-basket-shopping {
+            color: #518432;
+        }
+
+        .nav-icon-member {
+            display: none;
+        }
+
+        .shopping-guide-group {
+            display: flex;
+            justify-content: flex-end;
+            /* margin-bottom: 180px; */
+            min-height: 500px;
+        }
+
+        .shopping-guide-text {
+            width: 60%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: center;
+            position: relative;
+            margin-bottom: -30px;
+            /* margin-left: 100px; */
+            margin-right: -20px;
+            max-width: 257px;
+
+
+        }
+
+        .shopping-guide-text-area {
+            width: 100%;
+            z-index: 2;
+        }
+
+        .shopping-guide-text-area h2 {
+            font-size: 2.4rem;
+            font-weight: 300;
+            margin-bottom: 10px;
+        }
+
+        .shopping-guide-text-area p {
+            font-size: 125%;
+            margin: 0 0 25px;
+        }
+
+
+
+        .shopping-guide-img {
+            width: 50%;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .shopping-guide-img>img {
+            position: absolute;
+            margin-top: 100px;
+
+            /* margin-bottom: -120px; */
+            width: 50%;
+            vertical-align: middle;
+            height: 60%;
+        }
+
+
+
+        .shopping-guide-background>img {
+            position: absolute;
+            z-index: -1;
+            height: 85%;
+        }
+
+
+        .shopping-guide-button {
+            background-color: rgb(0, 0, 0);
+            padding: 7% 15%;
+            display: inline-block;
+            transition: 0.3s;
+        }
+
+        .shopping-guide-button:hover {
+            background-color: #007bff;
+        }
+
+        .shopping-guide-button>a {
+            text-decoration: none;
+            font-size: 75%;
+            letter-spacing: 1px;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        .concept-group {
+            width: 95%;
+            margin: auto;
+        }
+
+        .enterprise-concept-title {
+            width: 75%;
+            margin: auto;
+            padding: 20px 0;
+            display: flex;
+            justify-content: center;
+            /* flex-wrap: wrap; */
+        }
+
+        .enterprise-concept-title h2 {
+            display: inline-block;
+            color: #518432;
+            text-align: center;
+            font-size: 25px;
+
+        }
+
+        .enterprise-concept-header-text p {
+            color: #949494;
+            text-align: center;
+            font-size: 87.5%;
+            margin: 0 0 16px;
+            letter-spacing: 1.2px;
+            font-style: italic;
+
+        }
+
+        .enterprise-concept-item {
+            margin-bottom: 40px;
+        }
+
+        .enterprise-concept-item h3 {
+            margin-bottom: 10px;
+            font-size: 23px;
+        }
+
+        .enterprise-concept-item p {
+            font-size: 15px;
+            /* font-family: Poppins; */
+            color: #9c9c9c;
+            line-height: 1.5;
+            font-weight: 400;
+        }
+
+        .enterprise-concept-pic {
+            margin: 0 15px 24px;
+        }
+
+        .products-title {
+            width: 95%;
+            display: flex;
+            justify-content: center;
+            margin: auto;
+
+        }
+
+        .products-title h2 {
+            font-size: 30px;
+            color: #518432;
+            text-align: center;
+            margin: 40px 0 78px;
+        }
+
+        .products-group {
+            width: 95%;
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .products-col {
+            width: 50%;
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+
+
+
+        .sold-out {
+            background-color: red;
+            position: absolute;
+            top: 40px;
+            left: 0;
+            box-sizing: border-box;
+            padding: 0 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .sold-out span {
+            font-size: 11px;
+            color: white;
+            line-height: 1.5rem;
+            font-weight: 600;
+        }
+
+
+        .sale-label {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: #f00;
+            width: 50px;
+            height: 35px;
+            border-radius: 50% 0% 50% 0%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .sale-label span {
+            color: white;
+            font-size: 11px;
+            font-weight: 600;
+
+        }
+
+        .products-item {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 22px;
+            position: relative;
+        }
+
+        .cover-group {
+            display: flex;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            top: 50px;
+        }
+
+        .products-item-pic {
+            position: relative;
+        }
+
+        .products-item-pic img:nth-of-type(2) {
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: all 1s;
+        }
+
+        .products-item-pic:hover img:nth-of-type(2) {
+            opacity: 1;
+        }
+
+        .products-bgc-cover-item {
+            display: none;
+        }
+
+        .products-item-pic-bgc-cover {
+            background-color: rgb(215, 227, 228, 0.5);
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            position: absolute;
+            top: 0;
+            opacity: 0;
+            transition: all 0.5s;
+        }
+
+        .products-item-pic:hover .products-item-pic-bgc-cover {
+            opacity: 10;
+
+        }
+
+
+        .products-item a {
+            font-size: 14pxx;
+            text-decoration: none;
+            color: #212529;
+            font-weight: 400;
+        }
+
+        .products-item h3 {
+            margin: 18px 0 15px;
+        }
+
+        .video {
+            background-image: url(./Sunplant/bg-video1.webp);
+            display: flex;
+            justify-content: center;
+        }
+
+        .video-text h2 {
+            color: #518432;
+            font-size: 25px;
+            margin-bottom: 15px;
+
+        }
+
+        .video-text p {
+            font-weight: 500;
+        }
+
+        .video-group {
+            width: 95%;
+            margin-top: 100px;
+
+
+        }
+
+        .video-shop-btn {
+            display: inline-block;
+            border: 1px solid black;
+            margin-top: 30px;
+            margin-bottom: 48px;
+            transition: 0.5s;
+        }
+
+        .video-shop-btn:hover {
+            background-color: red;
+        }
+
+        .video-shop-btn a {
+            display: inline-block;
+            padding: 15px 40px;
+
+            color: #333333;
+            letter-spacing: 2px;
+            font-weight: 400;
+        }
+
+        .video-content {
+            margin-bottom: 60px;
+        }
+
+        .instagram-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .instagram-group .fa-instagram {
+            margin: 30px 0 10px;
+
+        }
+
+        .instagram-group h2 {
+            margin-bottom: 50px;
+        }
+
+        .instagram-pictures {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 50px;
+            /* overflow: hidden; */
+        }
+
+        .instagram-pic {
+            position: relative;
+        }
+
+        .instagram-pic img {
+            vertical-align: bottom;
+        }
+
+        .instagram-pic:hover .instagram-cover {
+            opacity: 1;
+        }
+
+        .instagram-cover {
+            background-color: rgba(39, 33, 33, 0.607);
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            transition: all 0.5s;
+
+
+        }
+
+        .instagram-pic-col {
+            width: 50%;
+            box-sizing: border-box;
+            padding: 0 15px;
+        }
+
+        .instagram-pictures :nth-child(3),
+        .instagram-pictures :nth-child(4) {
+            display: none;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: center;
+            background-color: #F4F4F4;
+            padding: 50px 0;
+            z-index: 2;
+        }
+
+        .footer-group {
+            width: 95%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer-service {
+            width: 95%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .footer-service ul {
+            display: flex;
+        }
+
+        .footer-service li {
+            list-style: none;
+        }
+
+        .footer-service a {
+            color: #333333;
+            padding: 0 10px;
+            font-size: 12px;
+            /* display: inline-block; */
+        }
+
+        .footer-service :nth-child(1) a {
+            display: inline-block;
+
+        }
+
+        .footer-service :nth-child(2) a {
+            display: inline-block;
+
+
+        }
+
+        .footer-logo {
+            width: 160px;
+        }
+
+
+        .footer-icons-group {
+            display: flex;
+            justify-content: center;
+
+
+        }
+
+        .footer-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+            margin: 20px 15px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-icon a {
+            z-index: 1;
+
+        }
+
+
+        .footer-icon-cover {
+            background-color: #528432e0;
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            top: 40px;
+            transition: all 0.5s;
+
+        }
+
+        .footer-icons-group li:hover .footer-icon-cover {
+            opacity: 1;
+            top: 0;
+        }
+
+
+        .fa-twitter,
+        .fa-basketball,
+        .fa-behance,
+        .footer-icon .fa-instagram {
+            color: white;
+            z-index: 1;
+        }
+
+
+        .footer-text p {
+            font-size: 12.5px;
+            margin-top: 28PX;
+            line-height: 1.5;
+            color: #aaa9a9;
+        }
+
+
+        @media screen and (min-width:768px) {
+
+            .menu {
+                display: none;
+            }
+
+            .nav {
+                background-color: #0000;
+                position: static;
+                margin-bottom: -82px;
+                z-index: 5;
+            }
+
+            .nav::after {
+                content: "";
+                position: sticky;
+                top: 0;
+                background-color: #fff;
+            }
+
+            .hambuger {
+                display: none;
+            }
+
+            .nav-bar-group {
+                display: flex;
+                align-items: center;
+            }
+
+            .nav-bar-group ul {
+                list-style: none;
+                display: flex;
+
+            }
+
+            .nav-bar-group ul li {
+                padding: 0 18px;
+                font-size: 15px;
+            }
+
+            .nav-logo {
+                position: relative;
+                margin-left: -270px;
+            }
+
+            .nav-icon-member :nth-child(1) {
+                margin-right: 16px;
+            }
+
+            .fa-magnifying-glass,
+            .fa-circle-user,
+            .fa-basket-shopping {
+                color: #000;
+            }
+
+            .nav-icon-member {
+                display: block;
+            }
+
+
+
+
+            .shopping-guide-text {
+                position: relative;
+                margin-bottom: -80px;
+                margin-right: 60px;
+            }
+
+            .shopping-guide-text-area {
+                width: 125%;
+                position: relative;
+            }
+
+            .shopping-guide-text-area h2 {
+                font-size: 3rem;
+            }
+
+            .shopping-guide-text-area p {
+                font-size: 150%;
+            }
+
+            .shopping-guide-img>img {
+                margin-top: 40px;
+                height: 95%;
+            }
+
+
+
+            .shopping-guide-background>img {
+                height: 100%;
+            }
+
+
+            .shopping-guide-button {
+                padding: 7% 20%;
+            }
+
+            .concept-group {
+                display: flex;
+
+            }
+
+            .enterprise-concept-header {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .enterprise-concept-title {
+                margin: 150px 0 40px;
+            }
+
+
+            .enterprise-concept-title h2 {
+                font-size: 35px;
+            }
+
+            .enterprise-concept-header-text {
+                width: 80%;
+                margin: 0 0 16px;
+            }
+
+            .enterprise-concept-header-text p {
+                font-size: 14px;
+                line-height: 16px;
+                margin: 0;
+            }
+
+            .enterprise-concept-items-group {
+                width: 33.3333%;
+            }
+
+            .concept-group .enterprise-concept-items-group:nth-of-type(1) {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+                direction: rtl;
+            }
+
+            .concept-group .enterprise-concept-items-group:nth-of-type(3) {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+
+
+            .enterprise-concept-pic {
+                display: flex;
+                align-items: center;
+                width: 33.3333%;
+            }
+
+            .enterprise-concept-pic img {
+                vertical-align: middle;
+            }
+
+
+            .products-title h2 {
+                font-size: 35px;
+            }
+
+            .products-col {
+                width: 33.333333%;
+            }
+
+
+            .products-item a {
+                font-size: 14pxx;
+                text-decoration: none;
+                color: #212529;
+                font-weight: 400;
+            }
+
+            .products-item h3 {
+                margin: 18px 0 15px;
+            }
+
+            .products-bgc-cover-item {
+                margin: 0 10px;
+                padding: 15px;
+                border-radius: 50%;
+                background-color: #fff;
+                display: block;
+            }
+
+            .products-item-pic-bgc-cover {
+                background-color: rgb(215, 227, 228, 0.5);
+                width: 100%;
+                height: 100%;
+                z-index: 1;
+                position: absolute;
+                top: 0;
+                opacity: 0;
+                transition: all 0.5s;
+            }
+
+            .video-text-area {
+                width: 50%;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+            }
+
+            .video-text {
+                width: 80%;
+                padding: 0 10px;
+            }
+
+            .video-text h2 {
+                font-size: 35px;
+            }
+
+            .video-group {
+                display: flex;
+            }
+
+            .video-content {
+                width: 50%;
+                margin-bottom: 60px;
+            }
+
+            .instagram-pic-col {
+                width: 25%;
+            }
+
+            .instagram-pictures :nth-child(3),
+            .instagram-pictures :nth-child(4) {
+                display: block;
+            }
+
+            .service-item {
+                display: flex;
+                align-items: center;
+            }
+
+            .service-item+.service-item::before {
+                content: "";
+                display: inline-block;
+                width: 30px;
+                height: 1.5px;
+                margin: 0 10px;
+                background-color: #ccc;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <input type="checkbox" name="" id="menu-switch">
+
+    <section class="menu">
+        <div class="menu-header">
+            <div class="menu-area">
+                <a href="" class="menu-block"></a>
+                <div class="menu-area-span">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <a href="">MENU</a>
+            </div>
+            <div class="menu-login">
+                <i class="fa-solid fa-circle-user"></i>
+                <a href="">Login</a>
+            </div>
+        </div>
+        <div class="menu-group">
+            <div class="menu-item">
+                <ul>
+                    <input type="checkbox" name="" id="home-switch">
+                    <li>
+                        <a href="#">HOME</a>
+                        <label for="home-switch">
+                            <i class="fa-solid fa-angle-right"></i>
+                        </label>
+                    </li>
+                    <ul class="home-item">
+                        <li>
+                            <a href="#">Home1</a>
+                        </li>
+                        <li>
+                            <a href="#">Home2</a>
+                        </li>
+                        <li>
+                            <a href="#">Home3</a>
+                        </li>
+                        <li>
+                            <a href="#">Home4</a>
+                        </li>
+                        <li>
+                            <a href="#">Home5</a>
+                        </li>
+                    </ul>
+                    <input type="checkbox" name="" id="shop-switch">
+                    <li>
+                        <a href="#">SHOP</a>
+                        <label for="shop-switch">
+                            <i class="fa-solid fa-angle-right"></i>
+                        </label>
+                    </li>
+                    <ul class="shop-item">
+                        <li>
+                            <a href="#">
+                                <h2>SHOP FILTER</h2>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">Filter Push Left</a>
+                        </li>
+                        <li>
+                            <a href="#">Filter Colappse</a>
+                        </li>
+                    </ul>
+
+                    <ul class="shop-item">
+                        <li>
+                            <a href="#">
+                                <h2>SHOP LAYOUT</h2>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">Full width</a>
+                        </li>
+                        <li>
+                            <a href="#">Sidebar Left</a>
+                        </li>
+                        <li>
+                            <a href="#">Sidebar Right</a>
+                        </li>
+                        <li>
+                            <a href="#">infinitry Scroll</a>
+                        </li>
+                        <li>
+                            <a href="#">Product List</a>
+                        </li>
+                    </ul>
+
+                    <input type="checkbox" name="" id="featured-switch">
+                    <li>
+                        <a href="">FEATURED</a>
+                        <label for="featured-switch">
+                            <i class="fa-solid fa-angle-right"></i>
+                        </label>
+                    </li>
+
+                    <ul class="featured-item">
+                        <li>
+                            <a href="#">
+                                <h2>BLOG LAYOUTS</h2>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">Blog Standar No Sidebar</a>
+                        </li>
+                        <li>
+                            <a href="#">Blog Standar Sidebar Left</a>
+                        </li>
+                        <li>
+                            <a href="#">Blog Standar Sidebar Right</a>
+                        </li>
+                        <li>
+                            <a href="#">Blog Grid No Sidebar</a>
+                        </li>
+                        <li>
+                            <a href="#">Blog Grid No Sidebar</a>
+                        </li>
+                    </ul>
+
+                    <ul class="featured-item">
+                        <li>
+                            <a href="#">
+                                <h2>PRODUCT LAYOUT</h2>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">Product Large Images</a>
+                        </li>
+                        <li>
+                            <a href="#">Product Extended</a>
+                        </li>
+                        <li>
+                            <a href="#">Product Gallery</a>
+                        </li>
+                        <li>
+                            <a href="#">Product Sticky</a>
+                        </li>
+                        <li>
+                            <a href="#">Product Sidebar</a>
+                        </li>
+                    </ul>
+
+                    <ul class="featured-item">
+                        <li>
+                            <a href="#">
+                                <h2>PRODUCT TYPES</h2>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">Variable</a>
+                        </li>
+                        <li>
+                            <a href="#">Video</a>
+                        </li>
+                        <li>
+                            <a href="#">360 Degree</a>
+                        </li>
+                        <li>
+                            <a href="#">Affiliate</a>
+                        </li>
+                        <li>
+                            <a href="#">Simple</a>
+                        </li>
+                        <li>
+                            <a href="#">Out Of Stock</a>
+                        </li>
+                    </ul>
+
+                    <ul class="featured-item">
+                        <li>
+                            <a href="#">
+                                <h2>Single Post No Sidebar</h2>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">Single Post Sidebar Right</a>
+                        </li>
+                        <li>
+                            <a href="#">Single Post Sidebar Left</a>
+                        </li>
+                    </ul>
+
+                    <input type="checkbox" name="" id="pages-switch">
+                    <li>
+                        <a href="">PAGES</a>
+                        <label for="pages-switch">
+                            <i class="fa-solid fa-angle-right"></i>
+                        </label>
+                    </li>
+                    <ul class="pages-item">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Wishlist</a></li>
+                    </ul>
+
+
+                    <input type="checkbox" name="" id="element-switch">
+                    <li>
+                        <a href="">ELEMENT</a>
+                        <label for="element-switch">
+                            <i class="fa-solid fa-angle-right"></i>
+                        </label>
+                    </li>
+                    <ul class="element-item">
+                        <li>
+                            <a href="#">
+                                <h2>MAIN STYLE</h2>
+                            </a>
+                        </li>
+                        <li><a href="#">No Sidebar</a></li>
+                        <li><a href="#">Default-Menu right</a></li>
+                        <li><a href="#">Minimal</a></li>
+                        <li><a href="#">Classic</a></li>
+                        <li><a href="#">Mordern</a></li>
+                    </ul>
+                    <ul class="element-item">
+                        <li>
+                            <a href="#">
+                                <h2>POST FOMAT</h2>
+                            </a>
+                        </li>
+                        <li><a href="#">Elementor</a></li>
+                        <li><a href="#">Logo on menu</a></li>
+                        <li><a href="#">Default-Menu Left</a></li>
+                        <li><a href="#">Logo in menu</a></li>
+                    </ul>
+
+
+                </ul>
+            </div>
+        </div>
+
+        <label for="menu-switch" class="menu-label">
+            <div class="menu-footer">
+                <span>CLOSE</span>
+            </div>
+        </label>
+    </section>
+
+
+    <section class="nav">
+        <div class="nav-bar">
+            <label for="menu-switch" class="hambuger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+
+
+
+            <div class="nav-bar-group">
+                <ul>
+                    <li>Home</li>
+                    <li>Shop</li>
+                    <li>Featured</li>
+                    <li>Pages</li>
+                    <li>Element</li>
+                </ul>
+            </div>
+            <div class="nav-logo">
+                <img src="./Sunplant/logo.webp" alt="">
+            </div>
+            <div class="nav-icon">
+                <div class="nav-icon-search">
+                    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+                </div>
+                <div class="nav-icon-member">
+                    <i class="fa-solid fa-circle-user fa-lg"></i>
+                </div>
+                <div class="nav-shopping-bag">
+                    <i class="fa-solid fa-basket-shopping fa-lg"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section class="shopping-guide">
+        <div class="shopping-guide-background">
+            <img src="./Sunplant/bg-slide10.webp" alt="">
+            <div class="shopping-guide-group">
+                <div class="shopping-guide-text">
+                    <div class="shopping-guide-text-area">
+                        <h2>Collection New <br>Beautiful</h2>
+                        <p>from$69</p>
+                        <div class="shopping-guide-button">
+                            <a href="#"><span>SHOP NOW</span></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="shopping-guide-img">
+                    <img src="./Sunplant/slidesho10-small-1.webp" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="enterprise-concept">
+        <div class="enterprise-concept-header">
+            <div class="enterprise-concept-title">
+                <h2>The important benefits of <br> greenery for the environment and health</h2>
+            </div>
+            <div class="enterprise-concept-header-text">
+                Trees have always been considered as "lungs" of the earth. planting lots of trees helps provide a
+                great deal of oxygen for us to breathe. <br>
+                On average, one tree can provide enough oxygen for four people.At the same time they also absorb
+                C02,
+                ammonia,S02, .. in the world!</p>
+            </div>
+        </div>
+        <div class="concept-group">
+            <div class="enterprise-concept-items-group">
+                <div class="enterprise-concept-item">
+                    <h3>Reducing environmental pollution</h3>
+                    <p>Trees have always been considered as "lungs" of the earth.</p>
+                </div>
+                <div class="enterprise-concept-item">
+                    <h3>Save water and reduce soil erosion</h3>
+                    <p>Trees can slow down the evaporation of water, increasing air humidity.</p>
+                </div>
+
+                <div class="enterprise-concept-item">
+                    <h3>Reduce street temperatures</h3>
+                    <p>Planting more trees in densely populated areas will not only make the air there more fresh</p>
+                </div>
+            </div>
+
+
+            <div class="enterprise-concept-pic">
+                <img src="./Sunplant/info-v2.webp" alt="">
+            </div>
+
+            <div class="enterprise-concept-items-group">
+                <div class="enterprise-concept-item">
+                    <h3>Energy conservation</h3>
+                    <p>One tree can cool down, cool down 10 rooms</p>
+                </div>
+
+                <div class="enterprise-concept-item">
+                    <h3>Prevent ultraviolet influence</h3>
+                    <p>Green trees become shade to block the sunlight from the road</p>
+                </div>
+
+                <div class="enterprise-concept-item">
+                    <h3>Improve human health</h3>
+                    <p>Living in a quiet, cool, clean and fresh environment will make your health better</p>
+                </div>
+            </div>
+
+
+        </div>
+
+    </section>
+
+    <section class="products">
+        <div class="products-title">
+            <h2>Staff.Pick</h2>
+        </div>
+        <div class="products-group">
+            <div class="products-col">
+                <div class="products-item">
+                    <div class="products-item-pic">
+                        <img src="./Sunplant/167-large_default.webp" alt="">
+                        <img src="./Sunplant/01.webp" alt="">
+                        <div class="products-item-pic-bgc-cover">
+                            <div class="cover-group">
+                                <div class="products-bgc-cover-item">
+                                    <i class="fa-solid fa-heart"></i>
+                                </div>
+                                <div class="products-bgc-cover-item">
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                </div>
+                                <div class="products-bgc-cover-item">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3><a href="#">Sapien Libero</a></h3>
+                    <p>$150.00</p>
+                </div>
+            </div>
+            <div class="products-col">
+                <div class="products-item">
+                    <div class="products-item-pic"><img src="./Sunplant/5.webp" alt="">
+                        <img src="./Sunplant/02.webp" alt="">
+                        <div class="products-item-pic-bgc-cover">
+                            <div class="cover-group">
+                                <div class="products-bgc-cover-item">
+                                    <i class="fa-solid fa-heart"></i>
+                                </div>
+                                <div class="products-bgc-cover-item">
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                </div>
+                                <div class="products-bgc-cover-item">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3><a href="">Fringilla Augue 360</a></h3>
+                    <p>$150.00</p>
+                    <div class="sale-label"><span>SALE</span></div>
+                </div>
+            </div>
+            <div class="products-col">
+                <div class="products-item">
+                    <div class="products-item-pic">
+                        <img src="./Sunplant/198-large_default_3b2e9138-0286-48ee-983f-c8fb82a3a443.webp" alt="">
+                        <img src="./Sunplant/03.webp" alt="">
+                        <div class="products-item-pic-bgc-cover">
+                            <div class="cover-group">
+                                <div class="products-bgc-cover-item">
+                                    <i class="fa-solid fa-heart"></i>
+                                </div>
+                                <div class="products-bgc-cover-item">
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                </div>
+                                <div class="products-bgc-cover-item">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3><a href="#">Faded Short Sleeves Variable</a></h3>
+                    <p>$150.00</p>
+                    <div class="sale-label"><span>SALE</span></div>
+                </div>
+            </div>
+            <div class="products-col">
+                <div class="products-item">
+                    <div class="products-item-pic">
+                        <img src="./Sunplant/155-large_default.jpg" alt="">
+                        <img src="./Sunplant/04.webp" alt="">
+                        <div class="products-item-pic-bgc-cover">
+                            <div class="cover-group">
+                                <div class="products-bgc-cover-item">
+                                    <i class="fa-solid fa-heart"></i>
+                                </div>
+                                <div class="products-bgc-cover-item">
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                </div>
+                                <div class="products-bgc-cover-item">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3><a href="#">Purple Flowers</a></h3>
+                    <p>$180.00</p>
+                </div>
+            </div>
+            <div class="products-col">
+                <div class="products-item">
+                    <div class="products-item-pic"><img src="./Sunplant/1.webp" alt="">
+                        <img src="./Sunplant/05.webp" alt="">
+                        <div class="products-item-pic-bgc-cover">
+                            <div class="cover-group">
+                                <div class="products-bgc-cover-item">
+                                    <i class="fa-solid fa-heart"></i>
+                                </div>
+                                <div class="products-bgc-cover-item">
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                </div>
+                                <div class="products-bgc-cover-item">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3><a href="#">Adipiscing Cursus Out Of Stock</a></h3>
+                    <p>$450.00</p>
+                    <div class="sold-out"><span>SOLD OUT</span></div>
+                </div>
+            </div>
+            <div class="products-col">
+                <div class="products-item">
+                    <div class="products-item-pic"><img src="./Sunplant/203-large_default.webp" alt="">
+                        <img src="./Sunplant/06.webp" alt="">
+                        <div class="products-item-pic-bgc-cover">
+                            <div class="cover-group">
+                                <div class="products-bgc-cover-item">
+                                    <i class="fa-solid fa-heart"></i>
+                                </div>
+                                <div class="products-bgc-cover-item">
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                </div>
+                                <div class="products-bgc-cover-item">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3><a href="#">Fringilla Augue</a></h3>
+                    <p>$320.00</p>
+                </div>
+            </div>
+            <div class="products-col">
+                <div class="products-item">
+                    <div class="products-item-pic"><img src="./Sunplant/160-large_default.webp" alt="">
+                        <img src="./Sunplant/07.webp" alt="">
+                        <div class="products-item-pic-bgc-cover">
+                            <div class="cover-group">
+                                <div class="products-bgc-cover-item">
+                                    <i class="fa-solid fa-heart"></i>
+                                </div>
+                                <div class="products-bgc-cover-item">
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                </div>
+                                <div class="products-bgc-cover-item">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3><a href="#">Purple Flowers</a></h3>
+                    <p>$150.00</p>
+                    <div class="sale-label"><span>SALE</span></div>
+                </div>
+            </div>
+            <div class="products-col">
+                <div class="products-item">
+                    <div class="products-item-pic"><img src="./Sunplant/186-large_default.webp" alt="">
+                        <img src="./Sunplant/08.webp" alt="">
+                        <div class="products-item-pic-bgc-cover">
+                            <div class="cover-group">
+                                <div class="products-bgc-cover-item">
+                                    <i class="fa-solid fa-heart"></i>
+                                </div>
+                                <div class="products-bgc-cover-item">
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                </div>
+                                <div class="products-bgc-cover-item">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3><a href="#">Plant</a></h3>
+                    <p>$150.00</p>
+                    <div class="sale-label"><span>SALE</span></div>
+                </div>
+            </div>
+            <div class="products-col">
+                <div class="products-item">
+                    <div class="products-item-pic"><img src="./Sunplant/169-large_default.webp" alt="">
+                        <img src="./Sunplant/09.webp" alt="">
+                        <div class="products-item-pic-bgc-cover">
+                            <div class="cover-group">
+                                <div class="products-bgc-cover-item">
+                                    <i class="fa-solid fa-heart"></i>
+                                </div>
+                                <div class="products-bgc-cover-item">
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                </div>
+                                <div class="products-bgc-cover-item">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3><a href="#">Plant Beautiful</a></h3>
+                    <p>$150.00</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="video">
+
+        <div class="video-group">
+            <div class="video-text-area">
+                <div class="video-text">
+                    <h2>A Number Of Our Products</h2>
+                    <p>Pick up all you need to keep your board in optimum condition with Decathlon’s set of surfboard
+                        accessories.</p>
+                    <div class="video-shop-btn">
+                        <a href="#"><span>SHOP NOW</span></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-content">
+                <img src="./Sunplant/video1.webp" alt="">
+                <div class="play-btn">
+                    <a href="#"></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="instagram">
+        <div class="instagram-group">
+            <i class="fa-brands fa-instagram fa-4x"></i>
+            <h2>SHOP INSTAGRAM</h2>
+            <div class="instagram-pictures">
+                <div class="instagram-pic-col">
+                    <div class="instagram-pic">
+                        <a href=""><img src="./Sunplant/instagram1.webp" alt=""></a>
+                        <div class="instagram-cover"></div>
+                    </div>
+                </div>
+                <div class="instagram-pic-col">
+                    <div class="instagram-pic">
+                        <a href=""><img src="./Sunplant/instagram2.webp" alt=""></a>
+                        <div class="instagram-cover"></div>
+                    </div>
+                </div>
+                <div class="instagram-pic-col">
+                    <div class="instagram-pic">
+                        <a href=""><img src="./Sunplant/instagram3.webp" alt=""></a>
+                        <div class="instagram-cover"></div>
+                    </div>
+                </div>
+                <div class="instagram-pic-col">
+                    <div class="instagram-pic">
+                        <a href=""><img src="./Sunplant/instagram4.webp" alt=""></a>
+                        <div class="instagram-cover"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="footer">
+        <div class="footer-group">
+            <div class="footer-logo">
+                <img src="./Sunplant/logo.webp" alt="">
+            </div>
+            <div class="footer-service">
+
+                <ul>
+                    <li class="service-item"><a href="#">ABOUT US</a></li>
+                    <li class="service-item"> <a href="#">CUSTOMER SERVICE</a></li>
+                    <li class="service-item"> <a href="#">SUBSCRIPTION</a></li>
+                </ul>
+
+
+
+
+            </div>
+            <div class="footer-icons">
+                <ul class="footer-icons-group">
+                    <li class="footer-icon">
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                        <div class="footer-icon-cover"></div>
+                    </li>
+
+                    <li class="footer-icon">
+                        <a href="#"><i class="fa-solid fa-basketball"></i></a>
+                        <div class="footer-icon-cover"></div>
+                    </li>
+
+                    <li class="footer-icon">
+                        <a href="#"><i class="fa-brands fa-behance"></i></a>
+                        <div class="footer-icon-cover"></div>
+                    </li>
+
+                    <li class="footer-icon">
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <div class="footer-icon-cover"></div>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="footer-text">
+                <p>Website by ShopiLaunch . Copyright SunplantShop</p>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>
