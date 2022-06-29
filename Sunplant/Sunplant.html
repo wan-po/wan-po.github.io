@@ -359,12 +359,12 @@
             width: 50%;
             display: flex;
             justify-content: flex-end;
+
+
         }
 
         .shopping-guide-img>img {
             position: absolute;
-            margin-top: 100px;
-
             /* margin-bottom: -120px; */
             width: 50%;
             vertical-align: middle;
@@ -872,8 +872,9 @@
 
             .shopping-guide-text {
                 position: relative;
-                margin-bottom: -80px;
+                top: 250px;
                 margin-right: 60px;
+                height: 100%;
             }
 
             .shopping-guide-text-area {
@@ -889,9 +890,18 @@
                 font-size: 150%;
             }
 
+            .shopping-guide-img {
+                position: relative;
+                top: 80px;
+
+
+
+            }
+
             .shopping-guide-img>img {
                 margin-top: 40px;
                 height: 95%;
+                width: 100%;
             }
 
 
@@ -1321,15 +1331,21 @@
                 <img src="./Sunplant/logo.webp" alt="">
             </div>
             <div class="nav-icon">
-                <div class="nav-icon-search">
-                    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-                </div>
-                <div class="nav-icon-member">
-                    <i class="fa-solid fa-circle-user fa-lg"></i>
-                </div>
-                <div class="nav-shopping-bag">
-                    <i class="fa-solid fa-basket-shopping fa-lg"></i>
-                </div>
+                <a href="#">
+                    <div class="nav-icon-search">
+                        <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="nav-icon-member">
+                        <i class="fa-solid fa-circle-user fa-lg"></i>
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="nav-shopping-bag">
+                        <i class="fa-solid fa-basket-shopping fa-lg"></i>
+                    </div>
+                </a>
             </div>
         </div>
     </section>
