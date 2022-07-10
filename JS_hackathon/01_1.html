@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link rel="stylesheet" href="reset.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <style>
+        h1 {
+            text-align: center;
+        }
+
+        .box {
+            width: 960px;
+            height: 200px;
+            border: 2px solid red;
+            display: flex;
+            text-align: center;
+            align-items: center;
+            margin: auto;
+        }
+
+        span {
+            font-size: 36px;
+        }
+
+        span+span::before {
+            content: '~';
+            margin: 0 30px;
+        }
+
+        .range {
+            width: 100%;
+        }
+
+
+        .randomButtonArea {
+            width: 1200px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            padding: 50px 0 10px;
+        }
+
+        .inputArea {
+            width: 960px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+        }
+
+        .randomButton {
+
+            background-color: rgb(132, 132, 211);
+            margin: auto;
+        }
+
+        .inputNumber {
+            margin: auto;
+            width: 400px;
+            height: 50px;
+        }
+
+        .numberButton {
+            display: flex;
+            width: 210px;
+            box-sizing: border-box;
+            flex-wrap: wrap;
+            margin: auto;
+
+        }
+
+        .number {
+            width: 50px;
+            height: 50px;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            margin: 10px;
+            line-height: 50px;
+            border-radius: 10%;
+            color: white;
+            text-align: center;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="header">
+        <h1>終極密碼</h1>
+    </section>
+
+    <div class="box">
+        <div class="range">
+            <span class="min">0</span>
+            <span class="max">100</span>
+        </div>
+    </div>
+
+    <div class="randomButtonArea">
+        <button class="randomButton" onclick="createRandomNumber()">產生數字</button>
+    </div>
+    <div class="inputArea">
+        <input type="text" name="" id="" placeholder="請輸入數字0~100" class="inputNumber">
+    </div>
+
+    <div class="numberButton">
+        <button class="number one">1</button>
+        <button class="number two">2</button>
+        <button class="number three">3</button>
+        <button class="number four">4</button>
+        <button class="number one">5</button>
+        <button class="number one">6</button>
+        <button class="number one">7</button>
+        <button class="number one">8</button>
+        <button class="number one">9</button>
+        <button class="number clear" onclick="clearText()">X</button>
+        <button class="number zero">0</button>
+        <button class="number check" onclick="checkNumber()">V</button>
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+
+    <script>
+        let min, max, randomButton, randomNumber, inputText, inputNumber
+
+
+
+
+
+
+        window.onload = function () {
+            min = document.querySelector(".min")
+            max = document.querySelector(".max")
+            randomButton = document.querySelector(".randomButton")
+            inputText = document.querySelector(".inputNumber")
+            disabledTag()
+            addEvent()
+
+        }
+
+
+        function createRandomNumber() {
+            randomNumber = Math.floor(Math.random() * 100)
+            if (randomNumber == 0) {
+                createRandomNumber()
+            }
+            randomButton.disabled = true
+            inputText.disabled = false
+            let button = document.querySelectorAll(".number")
+            button.forEach(item => {
+                item.disabled = false
+            })
+            console.log(randomNumber)
+
+        }
+
+        function putNumber(event) {
+            let number = event.target.innerText
+            inputText.value += number
+        }
+
+        function clearText() {
+            inputText.value = ""
+            console.log(inputText2)
+        }
+
+        function disabledTag() {
+            let button = document.querySelectorAll(".number")
+            inputText.disabled = true
+            button.forEach(item => {
+                item.disabled = true
+            })
+        }
+
+        function checkNumber() {
+            if (randomNumber == undefined) {
+                alert('請產生隨機亂數')
+            } else if (inputText.value <= 0 || inputText.value.length > 2) {
+                alert('數字介於0~100之間')
+            } else if (inputText.value == '') {
+                alert('請輸入數字')
+            } else if (inputText.value == randomNumber) {
+                alert('恭喜答對')
+                min.innerText = '0'
+                max.innerText = '100'
+                randomNumber = undefined
+                randomButton.disabled = false
+            } else if (inputText.value < randomNumber) {
+                if (min.innerText > inputText.value) {
+                    alert(`請輸入數字大於${min.innerText}`)
+                    return
+                }
+                min.innerText = inputText.value
+
+            } else if (inputText.value > randomNumber) {
+                if (Number(max.innerText) < inputText.value) {
+                    alert(`請輸入數字小於${max.innerText}`)
+                    return
+                }
+                max.innerText = inputText.value
+
+            }
+            inputText.value = ""
+        }
+
+        function addEvent() {
+            let number = document.querySelectorAll('.number')
+            number.forEach(item => {
+                item.addEventListener('click', putNumber)
+            })
+        }
+    </script>
+</body>
+
+</html>

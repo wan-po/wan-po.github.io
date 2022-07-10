@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <style>
+        .container {
+            width: 900px;
+
+        }
+
+        .header {
+            display: flex;
+            padding: 0;
+
+        }
+
+        .header-button {
+            flex-grow: 1;
+            padding: 5px 0;
+        }
+
+
+        .answerArea {
+
+            height: 300px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container btn-group  header mt-2 mb-4 " role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-primary header-button start" onclick="createNumber()">開始</button>
+        <button type="button" class="btn btn-danger header-button reset" onclick="reset()">放棄重來</button>
+        <button type="button" class="btn btn-secondary header-button showAnswer" onclick="showAnswer()">看答案</button>
+    </div>
+
+    <div class="container answerArea">
+
+        <ul class="list-group">
+
+        </ul>
+    </div>
+
+    <div class="container mt-5">
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default">猜答案</span>
+            <input type="text" class="form-control textNumber" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default">
+            <button class="btn btn-outline-secondary guessButton" onclick="guessNumber()" type=" button"
+                id="button-addon2">猜</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+
+    <script>
+        let ansArray = []
+        let textNumber, guessButton, answerList, guessArray, a, b
+        let answerArea, start
+
+        window.onload = function () {
+            textNumber = document.querySelector('.textNumber')
+            guessButton = document.querySelector('.guessButton')
+            answerList = document.querySelector('.list-group')
+            answerArea = document.querySelector('.answerArea')
+
+            disabledTag()
+
+        }
+        function createNumber() {
+            let reset = document.querySelector('.reset')
+            let showAnswer = document.querySelector('.showAnswer')
+            let ul = document.querySelector('.list-group')
+            start = document.querySelector('.start')
+            ul.innerText = ""
+            showAnswer.disabled = false
+
+            reset.disabled = false
+            start.disabled = true
+            if (ansArray.length != 4) {
+                let x = Math.floor(Math.random() * 10)
+                ansArray.forEach(item => {
+                    if (x == item) {
+                        x = "";
+                    }
+                })
+                if (x != "") {
+                    ansArray.push(`${x}`)
+                }
+                createNumber()
+            }
+            console.log(ansArray)
+        }
+
+
+
+
+        function guessNumber() {
+
+            guessArray = Array.from(textNumber.value)
+            guessArrayCheck = guessArray.filter((ele, pos) => guessArray.indexOf(ele) == pos)
+            if (ansArray.length != 4) {
+                alert("請先按下開始鍵")
+            }
+            else if (guessArray.length != 4 || guessArrayCheck.length != 4) {
+                alert("請輸入四位數的數字or不得有重複數字")
+            } else {
+                compareNumber()
+                appendList()
+                if (a == 4) {
+
+                    alert("win")
+
+                    reset()
+
+
+                }
+            }
+        }
+
+        function appendList() {
+            if (a == 4) {
+                let li = document.createElement('li')
+                li.classList.add('list-group-item')
+                let span = document.createElement('span')
+                span.classList.add('badge', 'bg-success')
+                span.innerText = `${a}A${b}B`
+                let span2 = document.createElement('span')
+                span2.innerText = textNumber.value
+                li.append(span)
+                li.append(span2)
+                answerList.append(li)
+            } else {
+                let li = document.createElement('li')
+                li.classList.add('list-group-item')
+                let span = document.createElement('span')
+                span.classList.add('badge', 'bg-warning')
+                // span.classList.add('bg-secondary')
+                span.innerText = `${a}A${b}B`
+                let span2 = document.createElement('span')
+                span2.innerText = textNumber.value
+                li.append(span)
+                li.append(span2)
+                answerList.append(li)
+                textNumber.value = ""
+            }
+        }
+
+        function compareNumber() {
+            console.log(ansArray)
+            let intersect = ansArray.filter(x => guessArray.includes(x))
+            a = intersect.filter(x => guessArray.indexOf(x) == ansArray.indexOf(x)).length
+            b = intersect.length - a
+            console.log(a)
+            console.log(b)
+        }
+
+        function reset() {
+            textNumber.value = ''
+            ansArray = []
+            disabledTag()
+
+        }
+
+        function showAnswer() {
+            let ans = ansArray.join('')
+            alert(`${ans}`)
+        }
+
+        function disabledTag() {
+            let reset = document.querySelector('.reset')
+            let showAnswer = document.querySelector('.showAnswer')
+
+            start = document.querySelector('.start')
+            showAnswer.disabled = true
+            reset.disabled = true
+            start.disabled = false
+        }
+
+
+    </script>
+</body>
+
+</html>
