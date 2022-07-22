@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>假蘋果</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/24eccec891.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+        /*清除Bootstrap focus*/
+        .btn:focus,
+        .btn:active:focus,
+        .btn.btn:active:focus,
+        .btn.focus,
+        .btn:active.focus,
+        .btn.active.focus,
+        button:focus {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+
+        li {
+            display: inline-block;
+
+        }
+
+        a {
+            cursor: pointer;
+        }
+
+        .product-list {
+            display: inline-block;
+            color: white;
+            cursor: pointer;
+            padding: 10px;
+            font-size: 18px;
+        }
+
+
+        .product-div,
+        .nav-div {
+            width: 960px;
+        }
+
+        .navbar {
+            z-index: 1;
+        }
+
+        .choose-iphone {
+            font-size: 16px;
+        }
+
+        .recommended-iphone {
+            font-size: 12px;
+        }
+
+        .iphone-contentArea {
+            width: 400px;
+            height: 100px;
+            border: 1px solid rgb(222, 179, 179);
+            border-radius: 20px 20px 20px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 20px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .iphone-contentArea:hover {
+            border: 1px solid rgb(152, 87, 87);
+        }
+
+
+        .iphone-img {
+            position: sticky;
+            top: 30px;
+        }
+
+        .ipad-img {
+            position: sticky;
+            top: 30px;
+        }
+
+        .ipad-color-dot,
+        .colorImg {
+            width: 32px;
+            height: 32px;
+        }
+
+        .color-Div {
+            border-radius: 10px 10px 10px 10px;
+            border: 1px solid rgb(222, 179, 179);
+            height: 101px;
+            transition: box-shadow 0.5s;
+            position: relative;
+        }
+
+        .spec-btn,
+        .storage-Div {
+            border-radius: 10px 10px 10px 10px;
+            border: 1px solid rgb(222, 179, 179);
+            height: 101px;
+            transition: box-shadow 0.5s;
+            position: relative;
+        }
+
+        .storage-Div:hover {
+            cursor: pointer;
+            box-shadow: 5px 5px 10px 0 red;
+        }
+
+        .color-Div:hover {
+            cursor: pointer;
+            box-shadow: 5px 5px 10px 0 rgb(192, 244, 80);
+        }
+
+        .storage-span {
+            font-weight: bold;
+            font-size: 26px;
+        }
+
+        .storage-row:nth-child(odd) {
+            padding: 0 7.5px 0 0;
+        }
+
+        .storage-row:nth-child(even) {
+            padding: 0 0 0 7.5px;
+        }
+
+
+
+        .color-Div:nth-child(odd) {
+
+            margin-right: 15px;
+        }
+
+        [selected="true"]::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            border: 2px solid rgba(110, 68, 201, 0.838);
+            border-radius: 10px 10px 10px 10px;
+            box-shadow: 0px 0px 3px 3px #00f;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="header bg-black d-flex justify-content-center">
+        <ul class="d-flex align-content-center m-0">
+            <li class="list-unstyled mx-3"><span class="product-list" onclick="createProduct()">Iphone</span></li>
+            <li class="list-unstyled mx-3"><span class="product-list" onclick="createIpadProduct()">Ipad</span></li>
+        </ul>
+    </section>
+    <section class="navbar d-flex justify-content-center sticky-top bg-white shadow p-0">
+    </section>
+    <section class="product-body d-flex justify-content-center ">
+
+
+
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+
+    <script>
+        const productList = [
+            {
+                name: "iphone13 Mini",
+                price: 22900,
+                mainimg: "../iphone/iphone-13-family-hero.png",
+                colorList: [
+                    { name: '綠色', imgPic: '../iphone/iphone-13-green-select.png', imgColor: '../iphone/iphone-13-finish-green-202203.jpg' },
+                    { name: '粉紅色', imgPic: '../iphone/iphone-13-pink-select-2021.png', imgColor: '../iphone/iphone-13-finish-pink-202108.jpg' },
+                    { name: '藍色', imgPic: '../iphone/iphone-13-blue-select-2021.png', imgColor: '../iphone/iphone-13-finish-blue-202108.jpg' },
+                    { name: '午夜色', imgPic: '../iphone/iphone-13-midnight-select-2021.png', imgColor: '../iphone/iphone-13-finish-midnight-202108.jpg' },
+                    { name: '星光色', imgPic: '../iphone/iphone-13-starlight-select-2021.png', imgColor: '../iphone/iphone-13-finish-starlight-202108.jpg' },
+                    { name: '(PRODUCT)RED', imgPic: '../iphone/iphone-13-product-red-select-2021.png', imgColor: '../iphone/iphone-13-finish-product-red-202108.jpg' }
+                ],
+                spec: [
+                    {
+                        name: '容量',
+                        specDetail: [
+                            { name: '128GB', price: 22900, fit: 0 },
+                            { name: '256GB', price: 26400, fit: 3500 },
+                            { name: '521GB', price: 33400, fit: 10500 }
+                        ]
+                    }
+                ]
+            },
+            {
+                name: 'iPad Air',
+                price: '17900',
+                mainImg: '../iphone/ipad-air-select-202203.jpg',
+                colorList: [
+                    { name: '太空色', color: '#747378', img: '../iphone/ipad-air-select-wifi-spacegray-202203.png', colorImg: '../iphone/finish-spacegray-202203.png' },
+                    { name: '粉紅色', color: '#e7d2cf', img: '../iphone/ipad-air-select-wifi-pink-202203.png', colorImg: '../iphone/finish-pink-202203.jpg' },
+                    { name: '紫色', color: '#bebcd4', img: '../iphone/ipad-air-select-wifi-purple-202203.png', colorImg: '../iphone/finish-purple-202203.jpg' },
+                    { name: '藍色', color: '#8cb1c1', img: '../iphone/ipad-air-select-wifi-blue-202203.png', colorImg: '../iphone/finish-blue-202203.jpg' },
+                    { name: '星光色', color: '#faf7f2', img: '../iphone/ipad-air-select-wifi-starlight-202203.png', colorImg: '../iphone/finish-starlight-202203.jpg' }
+                ],
+                spec: [
+                    {
+                        name: '容量',
+                        specDetail: [
+                            {
+                                name: '64GB',
+                                fit: 0
+                            },
+                            {
+                                name: '256GB',
+                                fit: 5000
+                            },
+                        ]
+                    },
+                    {
+                        name: '連線能力',
+                        specDetail: [
+                            {
+                                name: 'Wi-fi',
+                                fit: 0
+                            },
+                            {
+                                name: 'wi-fi + 行動網路',
+                                fit: 5000
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+
+        window.onload = function () {
+            createProduct()
+        }
+
+        let navBody = document.querySelector('.navbar')
+        let priceSpan, nameSpan
+        function createNavbar(index) {
+            let navDiv = document.createElement('div')
+            nameSpan = document.createElement('a')
+            priceSpan = document.createElement('span')
+            navDiv.classList.add('nav-div', 'd-flex', 'justify-content-between')
+            nameSpan.innerText = productList[index].name
+            nameSpan.href = "https://www.apple.com/tw/iphone-13/"
+            nameSpan.classList.add('text-decoration-none', 'fs-3', 'text-dark')
+
+            priceSpan.innerText = `NT${productList[index].price}起`
+            priceSpan.value = 22900
+            priceSpan.classList.add('fs-3', 'text-dark')
+
+            navDiv.append(nameSpan)
+            navDiv.append(priceSpan)
+            navBody.append(navDiv)
+
+        }
+        let productBody = document.querySelector('.product-body')
+        let productContentArea, productImgArea
+        let colDiv, img
+
+        function createProduct() {
+            productBody.innerText = '';
+            navBody.innerText = '';
+            createNavbar(0);
+
+            let productDiv = document.createElement('div')
+            productImgArea = document.createElement('div')
+            productContentArea = document.createElement('div')
+
+            productDiv.classList.add('product-div', 'd-flex', 'justify-content-between')
+            productImgArea.classList.add('w-60', 'me-5')
+            productContentArea.classList.add('w-40', 'mt-5')
+
+            //img area
+            img = document.createElement('img')
+            img.classList.add('w-100', 'iphone-img')
+            console.log(productList[0].mainimg)
+            img.src = `${productList[0].mainimg}`
+
+            //product content area
+            let newSpan = document.createElement('span')
+            newSpan.classList.add('text-danger', 'fw-bolder')
+            newSpan.innerText = '全新'
+            let buyIphoneH2 = document.createElement('h2')
+            buyIphoneH2.classList.add('fw-bold')
+            buyIphoneH2.innerText = '購買iPhone13'
+            let buyIphoneP = document.createElement('p')
+            buyIphoneP.classList.add('m-0')
+            buyIphoneP.innerText = '以 iPhone 8 或後續機型換購，獲享最高達 NT$2,700 – NT$18,200 折抵優惠**'
+            let changeA = document.createElement('a')
+            changeA.innerText = "了解「Apple Trade In 換購方案」的運作方式"
+            changeA.href = "https://www.apple.com/tw/shop/browse/overlay/tradein/learn_more"
+            let chooseH3 = document.createElement('h3')
+            chooseH3.classList.add('mt-4', 'choose-iphone', 'fw-bold', 'mb-0')
+            chooseH3.innerText = '選擇機型。'
+            let recommendedA = document.createElement('a')
+            recommendedA.classList.add('recommended-iphone')
+            recommendedA.innerText = '哪一款機型最適合你？'
+            productContentArea.append(newSpan)
+            productContentArea.append(buyIphoneH2)
+            productContentArea.append(buyIphoneP)
+            productContentArea.append(changeA)
+            productContentArea.append(chooseH3)
+            productContentArea.append(recommendedA)
+
+            //選擇iphone型號
+            selectIphone("13 Mini", 5.4, 22900)
+            selectIphone("13", 6.1, 25900)
+
+            let chooseColorH3 = document.createElement('h3')
+            chooseColorH3.classList.add('mt-5', 'choose-iphone', 'fw-bold', 'mb-0')
+            chooseColorH3.innerText = '選擇外觀。'
+            productContentArea.append(chooseColorH3)
+            //選擇iphone顏色
+            selectColor()
+
+            let chooseStorageH3 = document.createElement('h3')
+            chooseStorageH3.classList.add('mt-4', 'choose-iphone', 'fw-bold', 'mb-0')
+            chooseStorageH3.innerText = '選擇儲存容量。'
+            let recommendedB = document.createElement('a')
+            recommendedB.classList.add('recommended-iphone')
+            recommendedB.innerText = '你需要多少儲存容量？'
+            productContentArea.append(chooseStorageH3)
+            productContentArea.append(recommendedB)
+
+            selectStorage()
+
+            productImgArea.append(img)
+            productDiv.append(productImgArea)
+            productDiv.append(productContentArea)
+            productBody.append(productDiv)
+        }
+
+        function selectIphone(iphone, screen, money) {
+            let iphone13Div = document.createElement('div')
+            iphone13Div.classList.add('iphone-contentArea')
+            iphone13Div.setAttribute('selected', 'false')
+            let spanLeft = document.createElement('span')
+            let spanRight = document.createElement('span')
+            let type = document.createElement('p')
+            type.setAttribute('style', 'margin: 0 10px')
+            let size = document.createElement('p')
+            size.setAttribute('style', 'margin: 0 10px')
+            let price = document.createElement('p')
+            price.setAttribute('style', 'margin: 0 10px')
+            type.innerText = `iphone${iphone}`
+            size.innerText = `${screen}吋顯示器`
+            price.innerText = `NT${money}起`
+
+            if (screen == 5.4) {
+                iphone13Div.addEventListener('click', function () {
+                    img.src = "../iphone/iphone-13-mini-family-select.jpg"
+                    priceSpan.value = 22900
+                    priceSpan.innerText = `NT${22900}起`
+                    nameSpan.innerText = 'Iphone13 Mini'
+
+                    colorDiv.querySelectorAll('.color-Div').forEach(item => {
+                        item.setAttribute('selected', 'false')
+                    })
+                    storageDiv.querySelectorAll('.storage-Div').forEach(item => {
+                        item.setAttribute('selected', 'false')
+                        console.log(item)
+                    })
+
+                    productContentArea.querySelectorAll('.iphone-contentArea').forEach(item => {
+                        item.setAttribute('selected', 'false')
+                    })
+                    iphone13Div.setAttribute('selected', 'true')
+                })
+            } else {
+                iphone13Div.addEventListener('click', function () {
+                    img.src = "../iphone/iphone-13-family-select.jpg"
+                    priceSpan.value = 25900
+                    priceSpan.innerText = `NT${25900}起`
+                    nameSpan.innerText = 'Iphone13'
+
+                    colorDiv.querySelectorAll('.color-Div').forEach(item => {
+                        item.setAttribute('selected', 'false')
+                    })
+                    storageDiv.querySelectorAll('.storage-Div').forEach(item => {
+                        item.setAttribute('selected', 'false')
+                        console.log(item)
+                    })
+
+                    productContentArea.querySelectorAll('.iphone-contentArea').forEach(item => {
+                        item.setAttribute('selected', 'false')
+                    })
+
+                    iphone13Div.setAttribute('selected', 'true')
+                })
+            }
+            spanLeft.append(type, size)
+            spanRight.append(price)
+            iphone13Div.append(spanLeft, spanRight)
+            productContentArea.append(iphone13Div)
+        }
+
+        function selectColor() {
+            colorDiv = document.createElement('div')
+            colorDiv.classList.add('col-12', 'row', 'd-flex', 'mt-3', 'justify-content-around', 'ms-0')
+
+
+            productList[0].colorList.forEach((item, index) => {
+                let colDiv = document.createElement('div')
+                let colorImg = document.createElement('img')
+                let colorSpan = document.createElement('span')
+                colDiv.classList.add('col-5', 'd-flex', 'flex-column', 'align-items-center', 'justify-content-center', 'color-Div', 'flex-grow-1', 'mb-3')
+                colDiv.setAttribute('selected', 'false')
+                colorImg.src = item.imgColor
+                colorImg.classList.add('colorImg')
+                colDiv.addEventListener('click', () => {
+                    img.src = item.imgPic
+                    colorDiv.querySelectorAll('.color-Div').forEach(item => {
+                        item.setAttribute('selected', 'false')
+                    })
+                    colDiv.setAttribute('selected', 'true')
+                })
+                colorSpan.innerText = item.name
+                colDiv.append(colorImg)
+                colDiv.append(colorSpan)
+                colorDiv.append(colDiv)
+            })
+
+            productContentArea.append(colorDiv)
+        }
+
+        function selectStorage() {
+            storageDiv = document.createElement('div')
+            storageDiv.classList.add('col-12', 'row', 'd-flex', 'mt-3', 'justify-content-start', 'ms-0')
+
+
+            productList[0].spec[0].specDetail.forEach((spec, index) => {
+                let div = document.createElement('div')
+                let colDiv = document.createElement('div')
+                let storageSpan = document.createElement('span')
+                let priceSpan = document.createElement('span')
+
+                div.classList.add('col-6', 'row', 'd-flex', 'justify-content-start', 'm-0', 'mb-3', 'storage-row')
+
+                colDiv.classList.add('d-flex', 'flex-column', 'align-items-center', 'justify-content-center', 'storage-Div', 'p-0')
+                colDiv.classList.add('fit');
+                colDiv.setAttribute('fit', spec.fit)
+                colDiv.setAttribute('selected', 'false')
+
+                storageSpan.innerText = spec.name
+                console.log(storageSpan.innerText)
+                storageSpan.classList.add('storage-span')
+                div.addEventListener('click', () => {
+                    storageDiv.querySelectorAll('.storage-Div').forEach(item => {
+                        item.setAttribute('selected', 'false')
+                        console.log(item)
+                    })
+
+                    colDiv.setAttribute('selected', 'true')
+                    showPrice()
+                })
+                priceSpan.innerText = `NT${spec.price}起`
+
+
+                colDiv.append(storageSpan)
+                colDiv.append(priceSpan)
+                div.append(colDiv)
+                storageDiv.append(div)
+            })
+
+            productContentArea.append(storageDiv)
+        }
+
+        function showPrice() {
+            let priceArray = document.querySelectorAll('[selected="true"][fit]')
+            let fee = priceArray[0].attributes[1].value
+            priceSpan.innerText = `${Number(priceSpan.value) + Number(fee)}元`
+        }
+
+        function showIpadPrice() {
+            let priceArray = Array.from(document.querySelectorAll('[selected="true"][fit]'))
+            let money = priceArray.length > 0 ? priceArray.map(x => parseInt(x.getAttributeNode('fit').value)).reduce((a, b) => a + b) : 0
+            console.log(money)
+            priceSpan.innerText = `${Number(productList[1].price) + money}元`
+        }
+
+        function createIpadProduct() {
+            productBody.innerText = ''
+            navBody.innerText = ''
+            productImgArea.innerText = ''
+            productContentArea.innerText = ''
+            createNavbar(1)
+            let productDiv = document.createElement('div')
+            productDiv.classList.add('d-flex', 'justify-content-between', 'product-div')
+            productImgArea.classList.add('w-50')
+            productContentArea.classList.add('w-50')
+
+            let ipadImg = document.createElement('img')
+            ipadImg.src = '../iphone/ipad-air-select-202203.jpg'
+            ipadImg.classList.add('w-100', 'ipad-img', 'mt-5')
+
+            let newSpan = document.createElement('span')
+            newSpan.classList.add('text-danger', 'fw-bolder')
+            newSpan.innerText = '全新'
+            let buyIpadH2 = document.createElement('h2')
+            buyIpadH2.classList.add('fw-bold')
+            buyIpadH2.innerText = '購買iPad Air'
+            productContentArea.append(newSpan)
+            productContentArea.append(buyIpadH2)
+            productImgArea.append(ipadImg)
+            productDiv.appendChild(productImgArea)
+            productDiv.appendChild(productContentArea)
+            productBody.append(productDiv)
+
+            let accordionArea = document.createElement('div');
+            accordionArea.classList.add('accordion', 'mt-5');
+            accordionArea.setAttribute('id', 'accordionPanelsStayOpenExample')
+            let accordionDiv = document.createElement('div');
+            accordionDiv.classList.add('accordion-item');
+            let accordionTitle = document.createElement('h2');
+            accordionTitle.classList.add('accordion-header');
+            accordionTitle.setAttribute('id', 'panelsStayOpen-headingOne');
+            let accordionBtn = document.createElement('button');
+            accordionBtn.innerText = '外觀'
+            accordionBtn.classList.add('accordion-button')
+            accordionBtn.setAttribute('type', 'button')
+            accordionBtn.setAttribute('data-bs-toggle', 'collapse')
+            accordionBtn.setAttribute('data-bs-target', '#panelsStayOpen-color')
+            accordionBtn.setAttribute('aria-expanded', 'true')
+            accordionBtn.setAttribute('aria-controls', 'panelsStayOpen-color')
+
+            accordionTitle.append(accordionBtn)
+
+            const accordionContent = document.createElement('div')
+            accordionContent.setAttribute('id', 'panelsStayOpen-color')
+            accordionContent.classList.add('accordion-collapse', 'collapse', 'show')
+            accordionContent.setAttribute('aria-labelledby', 'panelsStayOpen-headingOne')
+            const accordionBody = document.createElement('div')
+            accordionBody.classList.add('accordion-body')
+            const h5 = document.createElement('h5')
+            const strong = document.createElement('strong')
+            strong.innerText = '外觀'
+            h5.appendChild(strong)
+
+            const colorDiv = document.createElement('div')
+            colorDiv.classList.add('row')
+            productList[1].colorList.forEach(item => {
+                console.log(item)
+                const div = document.createElement('div')
+                div.classList.add('col-6', 'mb-3')
+                const btn = document.createElement('button')
+                btn.classList.add('btn', 'fit-btn', 'w-100')
+                const btnDiv = document.createElement('div')
+                btnDiv.classList.add('py-4', 'd-flex', 'flex-column', 'justify-content-center', 'align-items-center')
+
+                btn.onclick = () => {
+                    ipadImg.src = item.img;
+                    accordionBtn.innerText = item.name;
+                    accordionBtn.click();
+                }
+
+                const img = document.createElement('img')
+                img.classList.add('ipad-color-dot', 'm-0')
+                img.src = item.colorImg;
+                const span = document.createElement('span')
+                span.innerText = item.name;
+
+                btnDiv.appendChild(img)
+                btnDiv.appendChild(span)
+                btn.appendChild(btnDiv)
+                div.appendChild(btn)
+                colorDiv.appendChild(div)
+            })
+
+
+            accordionBody.appendChild(h5)
+            accordionBody.appendChild(colorDiv)
+            accordionContent.appendChild(accordionBody)
+            accordionDiv.appendChild(accordionTitle)
+            accordionDiv.appendChild(accordionContent)
+            accordionArea.appendChild(accordionDiv)
+            productContentArea.appendChild(accordionArea)
+
+
+            createSpec()
+
+
+        }
+
+        function createSpec() {
+            productList[1].spec.forEach((item, index) => {
+                let accordionArea = document.createElement('div')
+                accordionArea.classList.add('accordion')
+                const accordionItem = document.createElement('div')
+                accordionItem.classList.add('accorion-item')
+                const accordionTitle = document.createElement('h2')
+                accordionTitle.classList.add('accordion-header')
+                const accordionBtn = document.createElement('button')
+                accordionBtn.innerText = item.name
+                accordionBtn.classList.add('accordion-button')
+                accordionBtn.setAttribute('type', 'button')
+                accordionBtn.setAttribute('data-bs-toggle', 'collapse')
+                accordionBtn.setAttribute('data-bs-target', `#panelsStayOpen-${item.name}`)
+                accordionBtn.setAttribute('aria-expanded', 'true')
+                accordionBtn.setAttribute('aria-controls', `panelsStayOpen-${item.name}`)
+
+                accordionTitle.appendChild(accordionBtn)
+
+                const accordionContent = document.createElement('div')
+                accordionContent.setAttribute('id', `panelsStayOpen-${item.name}`)
+                accordionContent.classList.add('accordion-collapse', 'collapse', 'show')
+                const accordionBody = document.createElement('div')
+                accordionBody.classList.add('accordion-body')
+                const h5 = document.createElement('h5')
+                const strong = document.createElement('strong')
+                strong.innerText = item.name
+                h5.appendChild(strong)
+
+                const specDiv = document.createElement('div')
+                specDiv.classList.add('row')
+                item.specDetail.forEach(specItem => {
+                    const div = document.createElement('div')
+                    div.classList.add('col-6', 'mb-3')
+                    const btn = document.createElement('button')
+                    btn.classList.add('btn', 'fit-btn', 'w-100', 'spec-btn')
+                    btn.setAttribute('fit', specItem.fit)
+                    btn.setAttribute('selected', 'false')
+
+                    btn.onclick = function () {
+                        specDiv.querySelectorAll('.btn').forEach(b => {
+                            console.log(b)
+                            b.setAttribute('selected', 'false')
+                        })
+                        btn.setAttribute('selected', 'true')
+                        showIpadPrice()
+                        accordionBtn.innerText = specItem.name
+                        accordionBtn.click()
+                    }
+
+                    const btnDiv = document.createElement('div')
+                    btnDiv.classList.add('py-4', 'd-flex', 'flex-column', 'justify-content-center', 'align-items-center')
+
+                    const p = document.createElement('p')
+                    p.classList.add('spec-val', 'm-0')
+                    p.innerText = specItem.name
+                    const span = document.createElement('span')
+                    span.classList.add('fit')
+                    span.innerText = `NT${Number(productList[1].price) + Number(specItem.fit)}`
+
+                    btnDiv.appendChild(p)
+                    btnDiv.appendChild(span)
+                    btn.appendChild(btnDiv)
+                    div.appendChild(btn)
+                    specDiv.appendChild(div)
+                })
+                accordionBody.appendChild(h5)
+                accordionBody.appendChild(specDiv)
+                accordionContent.appendChild(accordionBody)
+                accordionItem.appendChild(accordionTitle)
+                accordionItem.appendChild(accordionContent)
+                accordionArea.appendChild(accordionItem)
+                productContentArea.appendChild(accordionArea)
+
+            })
+        }
+
+    </script>
+</body>
+
+</html>
