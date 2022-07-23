@@ -98,6 +98,7 @@
                 createNumber()
             }
             console.log(ansArray)
+
         }
 
 
@@ -105,23 +106,21 @@
 
         function guessNumber() {
 
+
             guessArray = Array.from(textNumber.value)
             guessArrayCheck = guessArray.filter((ele, pos) => guessArray.indexOf(ele) == pos)
-            if (ansArray.length != 4) {
-                alert("請先按下開始鍵")
-            }
-            else if (guessArray.length != 4 || guessArrayCheck.length != 4) {
+            if (guessArrayCheck.length != 4) {
                 alert("請輸入四位數的數字or不得有重複數字")
             } else {
-                compareNumber()
-                appendList()
-                if (a == 4) {
-
-                    alert("win")
-
-                    reset()
-
-
+                if (checkIsNumber()) {
+                    compareNumber()
+                    appendList()
+                    if (a == 4) {
+                        alert("win")
+                        reset()
+                    }
+                } else {
+                    alert(`${textNumber.value}只能輸入4位數字`)
                 }
             }
         }
@@ -155,7 +154,6 @@
         }
 
         function compareNumber() {
-            console.log(ansArray)
             let intersect = ansArray.filter(x => guessArray.includes(x))
             a = intersect.filter(x => guessArray.indexOf(x) == ansArray.indexOf(x)).length
             b = intersect.length - a
@@ -183,6 +181,14 @@
             showAnswer.disabled = true
             reset.disabled = true
             start.disabled = false
+        }
+
+        function checkIsNumber() {
+            let regularExpression = /^(?=\d).{4}$/
+            let number = parseInt(textNumber.value)
+            console.log(number)
+            return regularExpression.test(number)
+
         }
 
 

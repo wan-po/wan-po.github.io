@@ -1,0 +1,591 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-image: url(./chew-chew-island-2.jpg);
+            background-size: cover;
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+
+        .title {
+            text-shadow: 0.1em 0.1em 0.2em rgb(226, 19, 19);
+        }
+
+        .game-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 80px;
+            position: relative;
+        }
+
+        .game-area {
+            display: flex;
+            flex-wrap: wrap;
+            width: 400px;
+            height: 90px;
+        }
+
+
+        [box-id] {
+            border: 1px solid rgb(69, 37, 198);
+            border-radius: 10px;
+            /* background-image: url(./card-back.jpg);
+            background-size: cover;
+            background-position: center; */
+            padding: 0;
+            margin: 5px;
+            vertical-align: auto;
+            position: relative;
+            transition: all 0.2s;
+            pointer-events: none;
+        }
+
+        [box-id].active {
+            border: 3px solid red;
+            box-shadow: 0 2px 30px rgb(158, 10, 10);
+        }
+
+        [box-id]:hover {
+            transform: scale(1.1);
+        }
+
+        .cards {
+            border-radius: 10px;
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+            position: absolute;
+            transform-style: preserve-3d;
+            box-shadow: 0px 0px 10px rgba(10, 10, 0.8);
+            transition: all 1s;
+        }
+
+        .card-front {
+            position: absolute;
+            height: 100%;
+            transform: rotateY(180deg);
+            backface-visibility: hidden;
+        }
+
+        .front-img {
+            border-radius: 10px;
+            width: 100%;
+            height: 100%;
+
+        }
+
+
+        .card-back {
+            border-radius: 10px;
+            background-image: url(./card-back2.jpg);
+            background-size: cover;
+            background-position: center;
+            height: 100%;
+            width: 100%;
+            backface-visibility: hidden;
+        }
+
+        .start-area {
+            position: fixed;
+            right: 300px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .btn {
+            margin-bottom: 23px;
+            margin-top: 23px;
+        }
+
+        .btn-start {
+            border: none;
+            box-shadow: 0 0 10px blue;
+        }
+
+        .btn-start:hover {
+            transform: scale(1.1);
+        }
+
+        .btn-reset {
+            border: none;
+        }
+
+        .btn-reset:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+
+<body>
+    <section class="section-header d-flex flex-column text-center">
+        <h1 class="mt-3 text-white title">百分之90%的人無法一次過關</h1>
+        <span class="game-chances"></span>
+    </section>
+    <section class="game-section m-0 p-0">
+        <div class="game-area row d-flex justify-content-center col-10">
+            <div box-id="0" class="col-2">
+                <div class="cards">
+                    <!-- 正面 -->
+                    <div class="card-front">
+                        <img src="./card-front-fail.jpg" alt="" class="front-img">
+                    </div>
+                    <!-- 背面 -->
+                    <div class="card-back">
+
+                    </div>
+                </div>
+            </div>
+            <div box-id="1" class="col-2">
+                <div class="cards">
+                    <!-- 正面 -->
+                    <div class="card-front">
+                        <img src="./card-front-fail.jpg" alt="" class="front-img">
+                    </div>
+                    <!-- 背面 -->
+                    <div class="card-back">
+
+                    </div>
+                </div>
+            </div>
+            <div box-id="2" class="col-2">
+                <div class="cards">
+                    <!-- 正面 -->
+                    <div class="card-front">
+                        <img src="./card-front-fail.jpg" alt="" class="front-img">
+                    </div>
+                    <!-- 背面 -->
+                    <div class="card-back">
+
+                    </div>
+                </div>
+            </div>
+            <div box-id="3" class="col-2">
+                <div class="cards">
+                    <!-- 正面 -->
+                    <div class="card-front">
+                        <img src="./card-front-fail.jpg" alt="" class="front-img">
+                    </div>
+                    <!-- 背面 -->
+                    <div class="card-back">
+
+                    </div>
+                </div>
+            </div>
+            <div box-id="4" class="col-2">
+                <div class="cards">
+                    <!-- 正面 -->
+                    <div class="card-front">
+                        <img src="./card-front-fail.jpg" alt="" class="front-img">
+                    </div>
+                    <!-- 背面 -->
+                    <div class="card-back">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="game-area row d-flex justify-content-center col-10">
+            <div box-id="5" class="col-2">
+                <div class="cards">
+                    <!-- 正面 -->
+                    <div class="card-front">
+                        <img src="./card-front-fail.jpg" alt="" class="front-img">
+                    </div>
+                    <!-- 背面 -->
+                    <div class="card-back">
+
+                    </div>
+                </div>
+            </div>
+            <div box-id="6" class="col-2">
+                <div class="cards">
+                    <!-- 正面 -->
+                    <div class="card-front">
+                        <img src="./card-front-fail.jpg" alt="" class="front-img">
+                    </div>
+                    <!-- 背面 -->
+                    <div class="card-back">
+
+                    </div>
+                </div>
+            </div>
+            <div box-id="7" class="col-2">
+                <div class="cards">
+                    <!-- 正面 -->
+                    <div class="card-front">
+                        <img src="./card-front-fail.jpg" alt="" class="front-img">
+                    </div>
+                    <!-- 背面 -->
+                    <div class="card-back">
+
+                    </div>
+                </div>
+            </div>
+            <div box-id="8" class="col-2">
+                <div class="cards">
+                    <!-- 正面 -->
+                    <div class="card-front">
+                        <img src="./card-front-fail.jpg" alt="" class="front-img">
+                    </div>
+                    <!-- 背面 -->
+                    <div class="card-back">
+
+                    </div>
+                </div>
+            </div>
+            <div box-id="9" class="col-2">
+                <div class="cards">
+                    <!-- 正面 -->
+                    <div class="card-front">
+                        <img src="./card-front-fail.jpg" alt="" class="front-img">
+                    </div>
+                    <!-- 背面 -->
+                    <div class="card-back">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="game-area row d-flex justify-content-center col-10">
+            <div box-id="10" class="col-2">
+                <div class="cards">
+                    <!-- 正面 -->
+                    <div class="card-front">
+                        <img src="./card-front-fail.jpg" alt="" class="front-img">
+                    </div>
+                    <!-- 背面 -->
+                    <div class="card-back">
+
+                    </div>
+                </div>
+            </div>
+            <div box-id="11" class="col-2">
+                <div class="cards">
+                    <!-- 正面 -->
+                    <div class="card-front">
+                        <img src="./card-front-fail.jpg" alt="" class="front-img">
+                    </div>
+                    <!-- 背面 -->
+                    <div class="card-back">
+
+                    </div>
+                </div>
+            </div>
+            <div box-id="12" class="col-2">
+                <div class="cards">
+                    <!-- 正面 -->
+                    <div class="card-front">
+                        <img src="./card-front-fail.jpg" alt="" class="front-img">
+                    </div>
+                    <!-- 背面 -->
+                    <div class="card-back">
+
+                    </div>
+                </div>
+            </div>
+            <div box-id="13" class="col-2">
+                <div class="cards">
+                    <!-- 正面 -->
+                    <div class="card-front">
+                        <img src="./card-front-fail.jpg" alt="" class="front-img">
+                    </div>
+                    <!-- 背面 -->
+                    <div class="card-back">
+
+                    </div>
+                </div>
+            </div>
+            <div box-id="14" class="col-2">
+                <div class="cards">
+                    <!-- 正面 -->
+                    <div class="card-front">
+                        <img src="./card-front-fail.jpg" alt="" class="front-img">
+                    </div>
+                    <!-- 背面 -->
+                    <div class="card-back">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="game-area row d-flex justify-content-center col-10">
+            <div box-id="15" class="col-2">
+                <div class="cards">
+                    <!-- 正面 -->
+                    <div class="card-front">
+                        <img src="./card-front-fail.jpg" alt="" class="front-img">
+                    </div>
+                    <!-- 背面 -->
+                    <div class="card-back">
+
+                    </div>
+                </div>
+            </div>
+            <div box-id="16" class="col-2">
+                <div class="cards">
+                    <!-- 正面 -->
+                    <div class="card-front">
+                        <img src="./card-front-fail.jpg" alt="" class="front-img">
+                    </div>
+                    <!-- 背面 -->
+                    <div class="card-back">
+
+                    </div>
+                </div>
+            </div>
+            <div box-id="17" class="col-2">
+                <div class="cards">
+                    <!-- 正面 -->
+                    <div class="card-front">
+                        <img src="./card-front-fail.jpg" alt="" class="front-img">
+                    </div>
+                    <!-- 背面 -->
+                    <div class="card-back">
+
+                    </div>
+                </div>
+            </div>
+            <div box-id="18" class="col-2">
+                <div class="cards">
+                    <!-- 正面 -->
+                    <div class="card-front">
+                        <img src="./card-front-fail.jpg" alt="" class="front-img">
+                    </div>
+                    <!-- 背面 -->
+                    <div class="card-back">
+
+                    </div>
+                </div>
+            </div>
+            <div box-id="19" class="col-2">
+                <div class="cards">
+                    <!-- 正面 -->
+                    <div class="card-front">
+                        <img src="./card-front-fail.jpg" alt="" class="front-img">
+                    </div>
+                    <!-- 背面 -->
+                    <div class="card-back">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="game-area row d-flex justify-content-center col-10">
+            <div box-id="20" class="col-2">
+                <div class="cards">
+                    <!-- 正面 -->
+                    <div class="card-front">
+                        <img src="./card-front-fail.jpg" alt="" class="front-img">
+                    </div>
+                    <!-- 背面 -->
+                    <div class="card-back">
+
+                    </div>
+                </div>
+            </div>
+            <div box-id="21" class="col-2">
+                <div class="cards">
+                    <!-- 正面 -->
+                    <div class="card-front">
+                        <img src="./card-front-fail.jpg" alt="" class="front-img">
+                    </div>
+                    <!-- 背面 -->
+                    <div class="card-back">
+
+                    </div>
+                </div>
+            </div>
+            <div box-id="22" class="col-2">
+                <div class="cards">
+                    <!-- 正面 -->
+                    <div class="card-front">
+                        <img src="./card-front-fail.jpg" alt="" class="front-img">
+                    </div>
+                    <!-- 背面 -->
+                    <div class="card-back">
+
+                    </div>
+                </div>
+            </div>
+            <div box-id="23" class="col-2">
+                <div class="cards">
+                    <!-- 正面 -->
+                    <div class="card-front">
+                        <img src="./card-front-fail.jpg" alt="" class="front-img">
+                    </div>
+                    <!-- 背面 -->
+                    <div class="card-back">
+
+                    </div>
+                </div>
+            </div>
+            <div box-id="24" class="col-2">
+                <div class="cards">
+                    <!-- 正面 -->
+                    <div class="card-front">
+                        <img src="./card-front-fail.jpg" alt="" class="front-img">
+                    </div>
+                    <!-- 背面 -->
+                    <div class="card-back">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="start-area">
+            <button class="btn btn-start" onclick="startGame()">開始遊戲</button>
+            <button class="btn btn-reset" onclick="resetGame()">重新開始</button>
+        </div>
+    </section>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+    <script>
+        let steps = 0;
+        let allSteps = 0;
+        let current = 0;
+        let speed = 10;
+        let times = 0;
+        let chances = 3;
+        let trueCards = 0;
+        let boxes = Array.from(document.querySelectorAll('[box-id]'));
+        let cards = Array.from(document.querySelectorAll('.cards'));
+        let btnReset = document.querySelector('.btn-reset');
+        let btnStart = document.querySelector('.btn-start');
+        document.querySelector('.game-chances').innerText = `剩餘機會:${chances}`
+
+
+        window.onload = function () {
+            btnReset.setAttribute('disabled', 'disabled');
+            boxes.forEach((item, index) => {
+                item.addEventListener('click', () => {
+                    console.dir(item.attributes[0].value);
+                    let card = document.querySelectorAll('.cards')[index];
+                    card.style = "transform:rotateY(180deg)";
+                    console.log(item.value)
+                    if (item.value == "false") {
+                        console.log(chances)
+                        setTimeout(() => {
+                            card.style = "transform:rotateY(360deg)";
+                            console.log(card);
+                            chances--;
+                            document.querySelector('.game-chances').innerText = `剩餘機會:${chances}`
+                        }, 500)
+                        setTimeout(() => {
+                            if (chances == 0) {
+                                alert('很遺憾，前10%的人畢竟是少數')
+                                resetGame();
+                            }
+                        }, 1000)
+                    } else {
+                        trueCards++;
+                        console.log(trueCards)
+                        setTimeout(() => {
+                            if (trueCards == 10) {
+                                alert('哇！太不可思議了，您是百分之10的存在');
+                                resetGame();
+                            }
+                        }, 500)
+                    }
+                })
+            })
+        }
+
+        let randomArray = [];
+        let random;
+        function getRandomNumber() {
+            random = Math.floor(Math.random() * boxes.length)
+            let randomRepaeat = randomArray.filter(x => x == random)
+            randomArray.push(random)
+            console.log(randomArray)
+            console.log(randomRepaeat.length)
+            if (randomRepaeat.length > 0) {
+                getRandomNumber();
+            } else {
+                return random
+            }
+        }
+
+        function startGame() {
+
+            btnReset.removeAttribute('disabled');
+            btnReset.style = "box-shadow: 0 0 10px red";
+            btnStart.style = "box-shadow:none";
+            btnStart.setAttribute('disabled', 'disabled');
+
+            boxes.forEach((item, index) => {
+                item.value = 'false';
+                console.log(item.value)
+            })
+
+            let rounds = setInterval(() => {
+                getRandomNumber();
+                steps = random;
+                allSteps = steps;
+                console.log("random:" + random)
+                console.log("allSteps:" + allSteps)
+                turnAround();
+                times++;
+                if (times == 10) {
+                    clearInterval(rounds);
+                    boxes.forEach((item, index) => {
+                        item.style = "pointer-events:all"
+                    })
+                }
+            }, 1000)
+            randomArray = [];
+
+            //開始後讓卡牌可以點選
+
+        }
+
+        function resetGame() {
+            location.reload();
+            btnStart.removeAttribute('disabled');
+            btnStart.style = "box-shadow: 0 0 10px blue";
+            btnReset.style = "box-shadow:none";
+            btnReset.setAttribute('disabled', 'disabled')
+            trueCards = 0;
+        }
+
+        function turnAround() {
+            current++;
+            steps--;
+
+            if (steps > 0) {
+                setTimeout(turnAround, speed);
+            } else {
+                console.log(current)
+                boxes[current].classList.add('active');
+                setTimeout(() => {
+                    boxes[current].classList.remove('active');
+                    boxes[current].value = 'true';
+                    let img = boxes[current].querySelector('.front-img');
+                    img.src = './card-front-correct.jpg';
+                    current = 0;
+                }, speed * 10)
+            }
+        }
+
+
+
+    </script>
+</body>
+
+</html>

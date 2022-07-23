@@ -21,7 +21,7 @@
 
         .box {
             height: 100px;
-            border: 1px solid rgb(223, 168, 168);
+            border: 1px solid rgb(184, 168, 223);
             overflow-y: auto;
             overflow-x: hidden;
             word-wrap: break-word;
@@ -34,8 +34,8 @@
 
         .calendar-title {
             height: 50px;
-            border: 1px solid rgb(223, 168, 168);
-            border-bottom: 2px solid rgba(223, 168, 168, 0.872);
+            border: 1px solid rgb(184, 168, 223);
+            border-bottom: 2px solid rgba(184, 168, 223);
             line-height: 50px;
         }
 
@@ -301,7 +301,7 @@
             calendarData.forEach(item => {
                 item.week.forEach(day => {
                     let divTitle = document.createElement('div')
-                    divTitle.classList.add('col-1', 'flex-grow-1', 'text-center', 'shadow-sm', 'calendar-title', 'bg-primary', 'col')
+                    divTitle.classList.add('col-1', 'flex-grow-1', 'text-center', 'shadow-sm', 'calendar-title', 'bg-primary', 'col', 'text-white')
                     divTitle.innerText = day
                     divTitleRow.append(divTitle)
                 })
