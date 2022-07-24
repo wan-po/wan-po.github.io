@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+
+    <!-- map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+
+
+    <link rel="stylesheet" href="../dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="../dist/MarkerCluster.Default.css" />
+    <script src="../dist/leaflet.markercluster-src.js"></script>
+    <script src="realworld.388.js"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+        integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous" />
+    <style>
+        .container-fluid>.row {
+            height: 100vh;
+        }
+
+        #map {
+            /* width: 50%; */
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row py-3">
+            <div class="col-12">
+                <div id="map"></div>
+            </div>
+            <div class="col-6">
+                <div class="row">
+                    <div class="form-group col-6">
+                        <label for="country">臺南市</label>
+                        <select id="country" class="form-control">
+                            <!-- option -->
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <h2 class="w-100 text-center">
+                        每人用水量統計(月份/公升)
+                    </h2>
+                    <div class="col-12 d-flex">
+
+                        <table class="table table-bordered table-striped text-center">
+                            <thead>
+                                <tr>
+                                    <th>臺南110年</th>
+                                    <th>1月</th>
+                                    <th>2月</th>
+                                    <th>3月</th>
+                                    <th>4月</th>
+                                    <th>5月</th>
+                                    <th>6月</th>
+                                    <th>7月</th>
+                                    <th>8月</th>
+                                    <th>9月</th>
+                                    <th>10月</th>
+                                    <th>11月</th>
+                                    <th>12月</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- Axios -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
+        integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    <script>
+        let areaDataRequest = axios.get('https://raw.githubusercontent.com/wan-po/FileStorage/main/%E5%8F%B0%E7%81%A3%E8%A1%8C%E6%94%BF%E5%9C%B0%E5%8D%80.json')
+        let populationDataRequest = axios.get('https://raw.githubusercontent.com/wan-po/FileStorage/main/TainanPopulation')
+        console.log(populationDataRequest)
+        let areaData //地區資料
+        let populationData //人口資料
+        let populationTainanData // 行政區經緯度 + 臺南人口資料
+        let markers = L.markerClusterGroup()
+
+        // 初始化地圖
+        let map = L.map('map', {
+            center: [23.1512133, 120.392613],
+            zoom: 11.08
+        })
+
+        // 設定圖資來源
+        let layerUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+        var layer = new L.TileLayer(layerUrl, {
+            minZoom: 8,
+            maxZoom: 19
+        })
+
+        map.addLayer(layer)
+
+        window.onload = function () {
+
+            Promise.all([areaDataRequest, populationDataRequest])
+                .then((res) => {
+                    // console.log(res)
+
+                    //將兩份取得的資料分開存入對應的物件
+                    let areaRes = res[0]
+                    let populationRes = res[1]
+                    // console.log(areaRes)
+                    // console.log(populationRes)
+
+                    //將物件內的資料抽離，放進陣列當中
+                    areaData = areaRes.data
+                    populationData = populationRes.data
+
+                    //將資料重整，原陣列太多其他資訊，重新將資料加入新的陣列
+                    populationData.forEach((item, index) => {
+                        populationData.push(item.data)
+                    })
+                    //取得1~12月的台南人口資料，
+                    populationData = populationData.splice(12)
+
+                    //原始資料沒有月份，將每一筆資料加入月份
+                    let populationDataWithMonth = []
+                    populationData.forEach((item, index) => {
+                        let addMonth
+                        addMonth = item.map(x => {
+                            return {
+                                ...x,
+                                month: index + 1
+                            }
+                        })
+                        populationDataWithMonth.push(addMonth)
+                    })
+
+                    //將添加月份的populaitonDataWithMonth放進一個新的陣列
+                    let newPopulationData = []
+                    populationDataWithMonth.forEach((item, index) => {
+                        item.forEach(x => {
+                            newPopulationData.push(x)
+                        })
+                    })
+                    console.log(newPopulationData)
+
+                    //產出一個新的MAP，包含經緯度及人口資訊
+                    populationTainanData = newPopulationData.map((item, index) => {
+                        let area = areaData.find(y => y.District == item.District && y.City == '臺南市')
+                        // console.log(area)
+                        return {
+                            ...item,
+                            CountyTown: area.City + item.District,
+                            Lat: area != undefined ? area.Lat : undefined,
+                            Lng: area != undefined ? area.Lng : undefined
+                        }
+                    })
+                        .filter((x) => x.Lat != undefined && x.Lng != undefined)
+                        .groupBy('CountyTown')
+                    console.log(populationTainanData)
+
+                    console.log(Object.keys(populationTainanData))
+                    // 初始化下拉選單
+                    let countrySelect = document.querySelector('#country');
+                    ['請選擇']
+                        .concat([...new Set(Object.keys(populationTainanData))])
+                        .forEach(x => {
+                            const opt = document.createElement('option')
+                            opt.innerText = x
+                            opt.value = x == '請選擇' ? '' : x
+
+                            countrySelect.appendChild(opt)
+                        })
+                    setMarker()
+
+                    document.querySelector('#country')
+                        .addEventListener('change', function () {
+                            console.log(this.value.substring(3))
+                            let district
+                            let area
+                            if (this.value != '') {
+                                console.log(Object.values(populationTainanData))
+                                Object.values(populationTainanData).forEach(item => {
+                                    district = item.find(x => x.District == this.value.substring(3))
+                                    if (district != undefined) {
+                                        area = district
+                                    }
+                                }
+                                )
+
+                                map.setView([area.Lat, area.Lng], 13)
+                            }
+                        })
+
+                }
+                )
+        }
+
+
+        function setMarker() {
+            Object.keys(populationTainanData).forEach(x => {
+
+                let data = populationTainanData[x]
+                console.log(data)
+                let marker = L.marker([data[0].Lat, data[0].Lng])
+                console.log(marker)
+                marker.bindPopup(`
+            <h4>${x}</h4>
+            <p>總人口為: ${data[0].total} 人</p>
+            <p>男生:${data[1].total}人</p>
+            <p>女生:${data[2].total}人</p>
+          `)
+
+                marker.addEventListener('click', function () {
+                    // 變更title
+                    document.querySelector('h2').innerText = `${x}`
+
+                    // 變更table
+                    let tbody = document.querySelector('tbody')
+                    tbody.innerHTML = ''
+
+                    let totalTr = document.createElement('tr')
+                    let maleTr = document.createElement('tr')
+                    let femaleTr = document.createElement('tr')
+
+                    let totalTd = document.createElement('td')
+                    totalTd.innerText = 'Total'
+                    totalTr.append(totalTd)
+
+                    let maleTd = document.createElement('td')
+                    maleTd.innerText = '男性'
+                    maleTr.append(maleTd)
+
+                    let femaleTd = document.createElement('td')
+                    femaleTd.innerText = '女性'
+                    femaleTr.append(femaleTd)
+
+
+                    data.forEach(item => {
+                        if (item.gender == '計') {
+                            console.log(item)
+                            let totalTd = document.createElement('td')
+                            totalTd.innerText = item.total
+                            totalTr.append(totalTd)
+                        }
+                        if (item.gender == '男') {
+                            let maleTd = document.createElement('td')
+                            maleTd.innerText = item.total
+                            maleTr.append(maleTd)
+                        }
+                        if (item.gender == '女') {
+                            let femaleTd = document.createElement('td')
+                            femaleTd.innerText = item.total
+                            femaleTr.append(femaleTd)
+                        }
+                    })
+                    tbody.append(totalTr)
+                    tbody.append(maleTr)
+                    tbody.append(femaleTr)
+                })
+
+
+                // marker.addTo(map)
+                // markers.addLayer(marker)
+                markers.addLayer(marker);
+            })
+            map.addLayer(markers);
+            // map.addLayer(markers)
+        }
+
+        //array groupby方法註冊
+        Array.prototype.groupBy = function (prop) {
+            return this.reduce(function (groups, item) {
+                const val = item[prop]
+                groups[val] = groups[val] || []
+                groups[val].push(item)
+                return groups
+            }, {})
+        }
+    </script>
+</body>
+
+</html>
