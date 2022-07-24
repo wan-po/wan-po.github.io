@@ -481,23 +481,28 @@
                     console.log(item.value)
                     if (item.value == "false") {
                         console.log(chances)
+
                         setTimeout(() => {
                             card.style = "transform:rotateY(360deg)";
                             console.log(card);
+                            console.log(item)
                             chances--;
-                            document.querySelector('.game-chances').innerText = `剩餘機會:${chances}`
+                            document.querySelector('.game-chances').innerText = `剩餘機會:${chances}`;
                         }, 500)
                         setTimeout(() => {
-                            if (chances == 0) {
+                            if (chances <= 0) {
                                 alert('很遺憾，前10%的人畢竟是少數')
                                 resetGame();
                             }
                         }, 1000)
                     } else {
                         trueCards++;
+                        // boxes.setAttribute('disabled', 'disabled')
                         console.log(trueCards)
+                        console.log(item)
+                        item.style = "pointer-events: none";
                         setTimeout(() => {
-                            if (trueCards == 10) {
+                            if (trueCards >= 10) {
                                 alert('哇！太不可思議了，您是百分之10的存在');
                                 resetGame();
                             }
@@ -510,11 +515,10 @@
         let randomArray = [];
         let random;
         function getRandomNumber() {
-            random = Math.floor(Math.random() * boxes.length)
+            random = Math.floor(Math.random() * boxes.length)  //
             let randomRepaeat = randomArray.filter(x => x == random)
             randomArray.push(random)
             console.log(randomArray)
-            console.log(randomRepaeat.length)
             if (randomRepaeat.length > 0) {
                 getRandomNumber();
             } else {
@@ -531,7 +535,6 @@
 
             boxes.forEach((item, index) => {
                 item.value = 'false';
-                console.log(item.value)
             })
 
             let rounds = setInterval(() => {
@@ -565,9 +568,19 @@
         }
 
         function turnAround() {
+            if (random == 0) {
+                setTimeout(() => {
+                    boxes[current].classList.remove('active');
+                    boxes[current].value = 'true';
+                    let img = boxes[current].querySelector('.front-img');
+                    console.log(img)
+                    img.src = './card-front-correct.jpg';
+                    current = 0;
+                }, speed * 10)
+                return
+            }
             current++;
             steps--;
-
             if (steps > 0) {
                 setTimeout(turnAround, speed);
             } else {
@@ -577,6 +590,7 @@
                     boxes[current].classList.remove('active');
                     boxes[current].value = 'true';
                     let img = boxes[current].querySelector('.front-img');
+                    console.log(img)
                     img.src = './card-front-correct.jpg';
                     current = 0;
                 }, speed * 10)
