@@ -515,7 +515,7 @@
         let randomArray = [];
         let random;
         function getRandomNumber() {
-            random = Math.floor(Math.random() * boxes.length)  //
+            random = Math.floor(Math.random() * boxes.length)  //boxes.length
             let randomRepaeat = randomArray.filter(x => x == random)
             randomArray.push(random)
             console.log(randomArray)
@@ -569,6 +569,7 @@
 
         function turnAround() {
             if (random == 0) {
+                boxes[current].classList.add('active');
                 setTimeout(() => {
                     boxes[current].classList.remove('active');
                     boxes[current].value = 'true';
